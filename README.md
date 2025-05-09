@@ -13,7 +13,7 @@ Furthermore, we observe that more "common" samples (i.e. "an image of a dog") te
 Finally, we show that under this two-ellipsoid geometry, the KL-Divergence between the conformity distributions of images and texts reaches its maximum, indicating that the modality gap in CLIP arises from differences in how conformity is distributed across modalities.
 
 ## Double-Ellipsoid notebook:
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/gist/yossilevii100/ce4cae6c26e7c3d3358c4fb7dda3bec4/untitled5.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/gist/yossilevii100/9e3068c16cc289ec4e00f6be9d2955e2/untitled3.ipynb)
 ## Get Started
 
 ### Clone the Repo
@@ -22,7 +22,7 @@ git clone https://github.com/yossilevii100/double-ellipsoid-clip.git
 cd double-ellipsoid-clip
 ```
 
-## Cite Double-Ellipsoid
+## Cite
 ```bibtex
 @article{levi2024double,
   title={The Double-Ellipsoid Geometry of CLIP},
