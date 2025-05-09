@@ -4,7 +4,7 @@ Official pytorch implementation of the paper ["The Double-Ellipsoid Geometry of 
 
 Meir Yossef Levi, Guy Gilboa
 
-<img src="./misc/teaser.pdf" width=600>
+<img src="./misc/teaser.png" width=600>
 
 We uncover a double-ellipsoid structure in CLIP’s latent space by analyzing the raw (pre-normalized) features. Each modality—image and text—is embedded in its own ellipsoid, both shifted away from the origin.
 
