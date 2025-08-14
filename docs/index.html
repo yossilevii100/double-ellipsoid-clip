@@ -10,7 +10,7 @@
   <script src="https://kit.fontawesome.com/ad96f96272.js" crossorigin="anonymous"></script>
 
   <style>
-    body { font-family: 'Roboto', sans-serif; background: #fafafa; color: #222; margin:0; padding-top:70px; }
+    body { font-family: 'Roboto', sans-serif; background: #fafafa; color: #222; margin:0; padding-top:70px; overflow-x:hidden; }
     h1, h2, h3 { font-family: 'Poppins', sans-serif; }
     
     /* Global links */
@@ -57,14 +57,20 @@
     /* Section styling */
     section { 
       width: 100%;
-      padding: 60px 5%;
+      display:flex;
+      justify-content:center;
       margin: 20px 0;
+    }
+    .section-content {
+      width: 100%;
+      max-width: 1000px; /* constrain width */
+      padding: 60px 20px;
       border-radius: 20px;
       box-shadow: 0 10px 20px rgba(162,89,255,0.15);
       transition: transform 0.3s, box-shadow 0.3s; 
       background: linear-gradient(145deg, #ffffff, #f2f0ff);
     }
-    section:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(162,89,255,0.2); }
+    .section-content:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(162,89,255,0.2); }
 
     h1 { font-size: 3rem; font-weight: 800; text-align:center; color:#a259ff; }
     h2 { font-size: 2rem; color:#4b0082; margin-bottom:20px; text-align:center; }
@@ -110,89 +116,103 @@
 
   <!-- Hero Section -->
   <section id="hero">
-    <h1>The Double-Ellipsoid Geometry of CLIP</h1>
-    <h2>ICML 2025</h2>
-    <p style="text-align:center;"><a href="https://yossilevii100.github.io">Meir Yossef Levi</a> &middot; <a href="https://guygilboa.net.technion.ac.il/">Guy Gilboa</a> &middot; Technion</p>
+    <div class="section-content">
+      <h1>The Double-Ellipsoid Geometry of CLIP</h1>
+      <h2>ICML 2025</h2>
+      <p style="text-align:center;"><a href="https://yossilevii100.github.io">Meir Yossef Levi</a> &middot; <a href="https://guygilboa.net.technion.ac.il/">Guy Gilboa</a> &middot; Technion</p>
 
-    <!-- Fancy Buttons under authors -->
-    <div class="authors-buttons">
-      <a href="https://arxiv.org/abs/2411.14517" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/ArXiv_logo.svg" alt="Arxiv"> Arxiv</a>
-      <a href="https://github.com/yossilevii100/double-ellipsoid-clip" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub"> Code</a>
-      <a href="https://www.youtube.com/watch?v=4nJCuGGfirw" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube"> Presentation</a>
+      <!-- Fancy Buttons under authors -->
+      <div class="authors-buttons">
+        <a href="https://arxiv.org/abs/2411.14517" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/ArXiv_logo.svg" alt="Arxiv"> Arxiv</a>
+        <a href="https://github.com/yossilevii100/double-ellipsoid-clip" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub"> Code</a>
+        <a href="https://www.youtube.com/watch?v=4nJCuGGfirw" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube"> Presentation</a>
+      </div>
+
+      <img class="poster" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/clip_poster.png" alt="Main Paper Poster">
     </div>
-
-    <img class="poster" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/clip_poster.png" alt="Main Paper Poster">
   </section>
 
   <!-- Abstract Section -->
   <section id="abstract">
-    <h2>Abstract</h2>
-    <p>Contrastive Language–Image Pre‑Training (CLIP) is instrumental across many domains, yet its embedding geometry is not fully understood. We examine the <strong>raw (pre‑normalized)</strong> features and show that image and text reside on <strong>linearly separable ellipsoid shells</strong>, both <strong>shifted away from the origin</strong>. We explain the benefits of this structure and introduce a notion of <em>conformity</em>, which closely matches cosine similarity to the modality mean. We further connect this geometry to the <em>modality gap</em> and the <em>narrow‑cone</em> effect.</p>
+    <div class="section-content">
+      <h2>Abstract</h2>
+      <p>Contrastive Language–Image Pre‑Training (CLIP) is instrumental across many domains, yet its embedding geometry is not fully understood. We examine the <strong>raw (pre‑normalized)</strong> features and show that image and text reside on <strong>linearly separable ellipsoid shells</strong>, both <strong>shifted away from the origin</strong>. We explain the benefits of this structure and introduce a notion of <em>conformity</em>, which closely matches cosine similarity to the modality mean. We further connect this geometry to the <em>modality gap</em> and the <em>narrow‑cone</em> effect.</p>
+    </div>
   </section>
 
   <!-- Key Insights Section -->
   <section id="insights">
-    <h2>Key Insights</h2>
-    <div class="insights-grid">
-      <div class="card-insight">
-        <h3>Double-Ellipsoid Geometry</h3>
-        <p>Image and text features occupy distinct, shifted ellipsoid shells in the raw CLIP space; their separability explains the <em>modality gap</em> while their offset from the origin explains the <em>Narrow Cone Effect</em>.</p>
-      </div>
-      <div class="card-insight">
-        <h3>Conformity ≈ Mean-Similarity</h3>
-        <p>A sample's conformity—the average cosine similarity to all others—can be estimated by its cosine similarity to the modality mean.</p>
-      </div>
-      <div class="card-insight">
-        <h3>Optimal Convergence</h3>
-        <p>We found that in this position the alignment between the conformity distribution of text and images is optimal.</p>
-      </div>
-      <div class="card-insight">
-        <h3>Practical Implications</h3>
-        <p>Understanding this geometry motivates simple diagnostics and improved alignment methods in downstream tasks.</p>
+    <div class="section-content">
+      <h2>Key Insights</h2>
+      <div class="insights-grid">
+        <div class="card-insight">
+          <h3>Double-Ellipsoid Geometry</h3>
+          <p>Image and text features occupy distinct, shifted ellipsoid shells in the raw CLIP space; their separability explains the <em>modality gap</em> while their offset from the origin explains the <em>Narrow Cone Effect</em>.</p>
+        </div>
+        <div class="card-insight">
+          <h3>Conformity ≈ Mean-Similarity</h3>
+          <p>A sample's conformity—the average cosine similarity to all others—can be estimated by its cosine similarity to the modality mean.</p>
+        </div>
+        <div class="card-insight">
+          <h3>Optimal Convergence</h3>
+          <p>We found that in this position the alignment between the conformity distribution of text and images is optimal.</p>
+        </div>
+        <div class="card-insight">
+          <h3>Practical Implications</h3>
+          <p>Understanding this geometry motivates simple diagnostics and improved alignment methods in downstream tasks.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Colab Demo Section -->
   <section id="colab">
-    <h2>Try it in Colab</h2>
-    <p>Run our quick demo on your browser with no setup required.</p>
-    <a class="btn-custom" href="https://colab.research.google.com/gist/yossilevii100/aa3ca61e69ff5e1c0cd9cd6ddebd612e/untitled3.ipynb" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Colaboratory_SVG_Logo.svg" alt="Colab"> Open Colab Notebook</a>
-    <pre>git clone https://github.com/yossilevii100/double-ellipsoid-clip.git
+    <div class="section-content">
+      <h2>Try it in Colab</h2>
+      <p>Run our quick demo on your browser with no setup required.</p>
+      <a class="btn-custom" href="https://colab.research.google.com/gist/yossilevii100/aa3ca61e69ff5e1c0cd9cd6ddebd612e/untitled3.ipynb" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Colaboratory_SVG_Logo.svg" alt="Colab"> Open Colab Notebook</a>
+      <pre>git clone https://github.com/yossilevii100/double-ellipsoid-clip.git
 cd double-ellipsoid-clip
 pip install -r requirements.txt
 # open the notebook Double-Ellipsoid-Clip.ipynb</pre>
+    </div>
   </section>
 
   <!-- Follow-up Paper Section -->
   <section id="followup">
-    <h2>Follow-up Work</h2>
-    <img class="poster" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/whitened_poster.png" alt="Follow-up Poster">
-    <p>Check out our follow-up ICML 2025 paper on analyzing CLIP in a probabilistic manner:</p>
-    <a class="btn-custom" href="https://arxiv.org/abs/2505.06934" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/ArXiv_logo.svg" alt="arXiv"> arXiv</a>
-    <a class="btn-custom" href="https://icml.cc/virtual/2025/poster/45897" target="_blank"><i class="fas fa-chalkboard-teacher"></i> ICML Poster</a>
-    <a class="btn-custom" href="https://github.com/rbetser/W_CLIP" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-    <a class="btn-custom" href="https://colab.research.google.com/github/rbetser/W_CLIP/blob/main/calc_log_like_image_demo.ipynb" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Colaboratory_SVG_Logo.svg" alt="Colab"> Colab Demo (Image Likelihood)</a>
-    <a class="btn-custom" href="https://colab.research.google.com/github/rbetser/W_CLIP/blob/main/calc_log_like_text_demo.ipynb" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Colaboratory_SVG_Logo.svg" alt="Colab"> Colab Demo (Text Likelihood)</a>
+    <div class="section-content">
+      <h2>Follow-up Work</h2>
+      <img class="poster" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/whitened_poster.png" alt="Follow-up Poster">
+      <p>Check out our follow-up ICML 2025 paper on analyzing CLIP in a probabilistic manner:</p>
+      <a class="btn-custom" href="https://arxiv.org/abs/2505.06934" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/ArXiv_logo.svg" alt="arXiv"> arXiv</a>
+      <a class="btn-custom" href="https://icml.cc/virtual/2025/poster/45897" target="_blank"><i class="fas fa-chalkboard-teacher"></i> ICML Poster</a>
+      <a class="btn-custom" href="https://github.com/rbetser/W_CLIP" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      <a class="btn-custom" href="https://colab.research.google.com/github/rbetser/W_CLIP/blob/main/calc_log_like_image_demo.ipynb" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Colaboratory_SVG_Logo.svg" alt="Colab"> Colab Demo (Image Likelihood)</a>
+      <a class="btn-custom" href="https://colab.research.google.com/github/rbetser/W_CLIP/blob/main/calc_log_like_text_demo.ipynb" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Colaboratory_SVG_Logo.svg" alt="Colab"> Colab Demo (Text Likelihood)</a>
+    </div>
   </section>
 
   <!-- Caltech Talk Section -->
   <section id="caltech">
-    <h2>Caltech Talk</h2>
-    <p>Watch the 50-minute recorded talk (starts when you press play):</p>
-    <iframe src="https://drive.google.com/file/d/13G6lymCSy6RgKj4VmaGgePG2L3qkqWIB/preview" title="Caltech Talk" frameborder="0" allowfullscreen></iframe>
+    <div class="section-content">
+      <h2>Caltech Talk</h2>
+      <p>Watch the 50-minute recorded talk (starts when you press play):</p>
+      <iframe src="https://drive.google.com/file/d/13G6lymCSy6RgKj4VmaGgePG2L3qkqWIB/preview" title="Caltech Talk" frameborder="0" allowfullscreen></iframe>
+    </div>
   </section>
 
   <!-- BibTeX Section -->
   <section id="bibtex">
-    <h2>BibTeX</h2>
-    <pre id="bibtex-text">@inproceedings{levi2025double,
+    <div class="section-content">
+      <h2>BibTeX</h2>
+      <pre id="bibtex-text">@inproceedings{levi2025double,
   title={The Double-Ellipsoid Geometry of CLIP},
   author={Levi, Meir Yossef and Gilboa, Guy},
   booktitle={International Conference on Machine Learning (ICML)},
   year={2025}
 }</pre>
-    <button class="btn-custom" onclick="copyBibtex()">Copy BibTeX</button>
+      <button class="btn-custom" onclick="copyBibtex()">Copy BibTeX</button>
+    </div>
   </section>
 
   <footer>
