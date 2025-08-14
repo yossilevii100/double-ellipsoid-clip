@@ -16,11 +16,11 @@
 
     /* Section styling */
     section { 
-      padding: 60px 20px; 
-      max-width: 900px; 
-      margin: 20px auto; 
-      border-radius: 20px; 
-      box-shadow: 0 10px 20px rgba(162,89,255,0.15); 
+      width: 100%;
+      padding: 60px 5%;
+      margin: 20px 0;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(162,89,255,0.15);
       transition: transform 0.3s, box-shadow 0.3s; 
       background: linear-gradient(145deg, #ffffff, #f2f0ff);
     }
@@ -43,8 +43,8 @@
     .btn-custom img { margin-right:8px; height:20px; }
 
     /* Media and code */
-    .poster { width:100%; border-radius:20px; box-shadow:0 0 30px rgba(162,89,255,0.15); margin:20px 0; }
-    iframe { border-radius:20px; max-width:100%; width:100%; height:450px; box-shadow:0 0 30px rgba(162,89,255,0.15); margin-top:20px; }
+    .poster { width:100%; max-width:1000px; border-radius:20px; box-shadow:0 0 30px rgba(162,89,255,0.15); margin:20px 0; display:block; margin-left:auto; margin-right:auto; }
+    iframe { border-radius:20px; max-width:100%; width:100%; height:450px; box-shadow:0 0 30px rgba(162,89,255,0.15); margin-top:20px; display:block; margin-left:auto; margin-right:auto; }
     pre { background:#eaeaea; padding:20px; border-radius:15px; overflow-x:auto; color:#222; }
 
     footer { text-align:center; padding:50px 20px; font-size:0.95rem; color:#555; }
@@ -57,7 +57,7 @@
     <h1>The Double-Ellipsoid Geometry of CLIP</h1>
     <h2>ICML 2025</h2>
     <p style="text-align:center;"><a href="https://yossilevii100.github.io" style="color:#4b0082; font-weight:600;">Meir Yossef Levi</a> &middot; <a href="https://guygilboa.net.technion.ac.il/" style="color:#4b0082; font-weight:600;">Guy Gilboa</a> &middot; Technion</p>
-    <img class="poster" src="https://icml.cc/media/PosterPDFs/ICML%202025/45348.png?t=1750923577.8415594" alt="Main Paper Poster">
+    <img class="poster" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/clip_poster.png" alt="Main Paper Poster">
   </section>
 
   <!-- Abstract Section -->
@@ -103,7 +103,7 @@ pip install -r requirements.txt
   <!-- Follow-up Paper Section -->
   <section>
     <h2>Follow-up Work</h2>
-    <img class="poster" src="https://icml.cc/media/PosterPDFs/ICML%202025/45897.png?t=1752514874.9767146" alt="Follow-up Poster">
+    <img class="poster" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/whitened_poster.png" alt="Follow-up Poster">
     <p>Check out our follow-up ICML 2025 paper on analyzing CLIP in a probabilistic manner:</p>
     <a class="btn-custom" href="https://arxiv.org/abs/2505.06934" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/ArXiv_logo.svg" alt="arXiv"> arXiv</a>
     <a class="btn-custom" href="https://icml.cc/virtual/2025/poster/45897" target="_blank"><i class="fas fa-chalkboard-teacher"></i> ICML Poster</a>
@@ -114,7 +114,7 @@ pip install -r requirements.txt
 
   <!-- Caltech Talk Section -->
   <section>
-    <h2>Talk at Vision Lab, Caltech (Pietro Perona's Lab)</h2>
+    <h2>Talk in Vision Lab, Caltech (Pietro Perona's Lab)</h2>
     <p>Watch the one-hour recorded talk:</p>
     <iframe src="https://drive.google.com/file/d/13G6lymCSy6RgKj4VmaGgePG2L3qkqWIB/preview" title="Caltech Talk" frameborder="0" allowfullscreen></iframe>
   </section>
