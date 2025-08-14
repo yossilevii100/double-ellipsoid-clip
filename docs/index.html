@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Double-Ellipsoid Geometry of CLIP</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/ad96f96272.js" crossorigin="anonymous"></script>
   <style>
     body {
       font-family: 'Roboto', sans-serif;
@@ -17,7 +18,7 @@
       background-color: #fff;
       padding: 20px;
       text-align: center;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     header h1 {
       margin: 0;
@@ -27,11 +28,10 @@
     section {
       padding: 40px 20px;
       max-width: 900px;
-      margin: 0 auto;
+      margin: 20px auto;
       background-color: #fff;
       border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     section h2 {
       font-size: 2em;
@@ -47,7 +47,7 @@
       display: inline-flex;
       align-items: center;
       padding: 10px 20px;
-      margin: 10px 0;
+      margin: 10px 10px 10px 0;
       background-color: #007bff;
       color: #fff;
       text-decoration: none;
@@ -55,37 +55,23 @@
       font-weight: 500;
       transition: background-color 0.3s;
     }
-    .btn:hover {
-      background-color: #0056b3;
-    }
-    .btn img {
-      margin-right: 8px;
-      height: 20px;
-    }
-    .separator {
-      border-top: 2px solid #e0e0e0;
-      margin: 40px 0;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #fff;
-      box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-      font-size: 0.9em;
-      color: #555;
-    }
+    .btn:hover { background-color: #0056b3; }
+    .btn img { margin-right: 8px; height: 20px; }
+    .separator { border-top: 2px solid #e0e0e0; margin: 40px 0; }
+    .poster { width: 100%; border-radius: 10px; margin: 20px 0; }
+    footer { text-align: center; padding: 20px; background-color: #fff; box-shadow: 0 -2px 4px rgba(0,0,0,0.1); font-size: 0.9em; color: #555; }
   </style>
 </head>
 <body>
 
 <header>
   <h1>The Double-Ellipsoid Geometry of CLIP</h1>
-  <p><a href="https://arxiv.org/abs/2411.14517" class="btn"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/ArXiv_logo.svg" alt="arXiv" style="height:20px;"> arXiv</a></p>
 </header>
 
 <section id="abstract">
   <h2>Abstract</h2>
   <p>Contrastive Language–Image Pre‑Training (CLIP) is instrumental across many domains, yet its embedding geometry is not fully understood. We examine the <strong>raw (pre‑normalized)</strong> features and show that image and text reside on <strong>linearly separable ellipsoid shells</strong>, both <strong>shifted away from the origin</strong>. We explain the benefits of this structure and introduce a notion of <em>conformity</em>, which closely matches cosine similarity to the modality mean. We further connect this geometry to the <em>modality gap</em> and the <em>narrow‑cone</em> effect.</p>
+  <img class="poster" src="https://icml.cc/media/PosterPDFs/ICML%202025/45348.png?t=1750923577.8415594" alt="Main Paper Poster">
 </section>
 
 <div class="separator"></div>
@@ -104,16 +90,17 @@
 
 <section id="follow-up">
   <h2>Follow-up Work</h2>
-  <p>Explore our follow-up work:</p>
-  <a href="https://arxiv.org/abs/2505.06934" class="btn"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/ArXiv_logo.svg" alt="arXiv" style="height:20px;"> arXiv</a>
+  <img class="poster" src="https://icml.cc/media/PosterPDFs/ICML%202025/45897.png?t=1752514874.9767146" alt="Follow-up Poster">
+  <p>Explore our follow-up ICML 2025 work:</p>
+  <a href="https://arxiv.org/abs/2505.06934" class="btn"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/ArXiv_logo.svg" alt="arXiv"> arXiv</a>
   <a href="https://icml.cc/virtual/2025/poster/45897" class="btn"><i class="fas fa-chalkboard-teacher"></i> ICML Poster</a>
   <a href="https://github.com/rbetser/W_CLIP" class="btn"><i class="fab fa-github"></i> GitHub</a>
-  <a href="https://colab.research.google.com/github/rbetser/W_CLIP/blob/main/calc_log_like_image_demo.ipynb" class="btn"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Colaboratory_SVG_Logo.svg" alt="Colab" style="height:20px;"> Colab Demo (Image Likelihood)</a>
-  <a href="https://colab.research.google.com/github/rbetser/W_CLIP/blob/main/calc_log_like_text_demo.ipynb" class="btn"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Colaboratory_SVG_Logo.svg" alt="Colab" style="height:20px;"> Colab Demo (Text Likelihood)</a>
+  <a href="https://colab.research.google.com/github/rbetser/W_CLIP/blob/main/calc_log_like_image_demo.ipynb" class="btn"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Colaboratory_SVG_Logo.svg" alt="Colab"> Colab Demo (Image Likelihood)</a>
+  <a href="https://colab.research.google.com/github/rbetser/W_CLIP/blob/main/calc_log_like_text_demo.ipynb" class="btn"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Colaboratory_SVG_Logo.svg" alt="Colab"> Colab Demo (Text Likelihood)</a>
 </section>
 
 <footer>
-  <p>&copy; 2025 Meir Yossef Levi &middot; Guy Gilboa &middot; Technion</p>
+  <p>&copy; 2025 Meir Yossef Levi &middot; Guy Gilboa &middot; Technion - Israel Institute of Technology</p>
 </footer>
 
 </body>
