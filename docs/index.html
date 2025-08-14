@@ -17,9 +17,9 @@
   <meta property="og:description" content="ICML 2025 paper on CLIP latent space geometry, conformity, and modality gap.">
 
   <style>
-    body { font-family: 'Roboto', sans-serif; background: #fafafa; color: #222; }
+    body { font-family: 'Roboto', sans-serif; background: #f5f5f5; color: #222; }
     h1, h2, h3 { font-family: 'Poppins', sans-serif; }
-    .hero { text-align: center; padding: 80px 20px; background: linear-gradient(135deg, #a259ff, #00d4ff); border-radius: 20px; margin: 20px; color: #fff; }
+    .hero { text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #a259ff, #00d4ff); border-radius: 20px; margin: 20px; color: #fff; }
     .hero h1 { font-size: 3rem; font-weight: 800; text-shadow: 2px 2px 6px rgba(0,0,0,0.15); }
     .hero h4 { font-size: 1.5rem; margin-top: 10px; }
     .hero p { font-size: 1.2rem; }
@@ -33,7 +33,7 @@
     pre { background: #eaeaea; padding: 20px; border-radius: 15px; overflow-x: auto; color: #222; }
     footer { text-align: center; padding: 50px 20px; font-size: 0.95rem; color: #555; }
     .icon { margin-right: 8px; }
-    iframe { border-radius: 20px; max-width: 100%; box-shadow: 0 0 30px rgba(162,89,255,0.15); margin-top: 20px; }
+    iframe { border-radius: 20px; max-width: 100%; width: 100%; height: 450px; box-shadow: 0 0 30px rgba(162,89,255,0.15); margin-top: 20px; }
   </style>
 </head>
 <body>
@@ -52,7 +52,7 @@
     <img class="teaser" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/teaser.png" alt="Double-Ellipsoid CLIP Teaser">
 
     <!-- Embedded Video -->
-    <iframe width="800" height="450" src="https://www.youtube.com/embed/4nJCuGGfirw" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/4nJCuGGfirw" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
   </section>
 
   <!-- Abstract Section -->
@@ -66,7 +66,7 @@
     <h2>Key Insights</h2>
     <div class="card-insight">
       <h3>Double-Ellipsoid Geometry</h3>
-      <p>Image and text features occupy distinct, shifted ellipsoid shells in the raw CLIP space; their separability explains the <em>modality gap</em>.</p>
+      <p>Image and text features occupy distinct, shifted ellipsoid shells in the raw CLIP space; their separability explains the <em>modality gap</em> while their offset from the origin explains the <em>Narrow Cone Effect</em>.</p>
     </div>
     <div class="card-insight">
       <h3>Conformity ≈ Mean-Similarity</h3>
