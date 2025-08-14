@@ -32,7 +32,37 @@
     .teaser:hover { transform: scale(1.03); }
     pre { background: #eaeaea; padding: 20px; border-radius: 15px; overflow-x: auto; color: #222; }
     footer { text-align: center; padding: 50px 20px; font-size: 0.95rem; color: #555; }
-    iframe { border-radius: 20px; max-width: 100%; width: 100%; height: 450px; box-shadow: 0 0 30px rgba(162,89,255,0.15); margin-top: 20px; }
+    iframe { border-radius: 20px; box-shadow: 0 0 30px rgba(162,89,255,0.15); margin-top: 20px; }
+
+    /* Video containers */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(162,89,255,0.15);
+      margin-top: 20px;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Key insights cards */
+    .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .card-insight { background: linear-gradient(145deg, #fff, #f0f0f5); border-radius: 20px; padding: 30px; box-shadow: 0 10px 20px rgba(162,89,255,0.2); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
+    .card-insight:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(162,89,255,0.3); }
+    .card-insight h3 { color: #a259ff; }
+
+    /* Follow-up image */
     .follow-up img { width: 100%; border-radius: 20px; box-shadow: 0 0 30px rgba(162,89,255,0.15); }
   </style>
 </head>
@@ -41,13 +71,13 @@
   <!-- Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-      <a class="navbar-brand text-white" href="#">The Double-Ellipsoid Geometry of CLIP</a>
+      <a class="navbar-brand text-white" href="#">Double-Ellipsoid CLIP</a>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="#abstract">Abstract</a></li>
           <li class="nav-item"><a class="nav-link" href="#insights">Key Insights</a></li>
-          <li class="nav-item"><a class="nav-link" href="#colab">Try it in Colab</a></li>
-          <li class="nav-item"><a class="nav-link" href="#follow-up">Follow-up Work</a></li>
+          <li class="nav-item"><a class="nav-link" href="#colab">Colab</a></li>
+          <li class="nav-item"><a class="nav-link" href="#follow-up">Follow-up</a></li>
           <li class="nav-item"><a class="nav-link" href="#caltech">Caltech Talk</a></li>
           <li class="nav-item"><a class="nav-link" href="#bibtex">BibTeX</a></li>
         </ul>
@@ -59,9 +89,92 @@
   <section class="hero" id="hero">
     <h1>The Double-Ellipsoid Geometry of CLIP</h1>
     <h4>ICML 2025</h4>
-    <p><a href="https://yossilevii100.github.io" style="color:#fff; text-decoration:underline;">Meir Yossef Levi</a>, <a href="https://guygilboa.net.technion.ac.il/" style="color:#fff; text-decoration:underline;">Guy Gilboa</a> &middot; Technion - Israel Institute of Technology</p>
+    <p><a href="https://yossilevii100.github.io" style="color:#fff;text-decoration:underline;">Meir Yossef Levi</a>, 
+       <a href="https://guygilboa.net.technion.ac.il/" style="color:#fff;text-decoration:underline;">Guy Gilboa</a> &middot; Technion</p>
     <div>
-      <a class="btn btn-custom" href="https://arxiv.org/abs/2411.14517" target="_blank"><span class="icon">📄</span>arXiv</a>
-      <a class="btn btn-custom" href="https://icml.cc/virtual/2025/poster/45348" target="_blank"><span class="icon">🎓</span>ICML Poster</a>
-      <a class="btn btn-custom" href="https://github.com/yossilevii100/double-ellipsoid-clip" target="_blank"><span class="icon">💻</span>GitHub</a>
-      <a class="btn btn-custom" href="https://colab.research.google
+      <a class="btn btn-custom" href="https://arxiv.org/abs/2411.14517" target="_blank">📄 arXiv</a>
+      <a class="btn btn-custom" href="https://icml.cc/virtual/2025/poster/45348" target="_blank">🎓 ICML Poster</a>
+      <a class="btn btn-custom" href="https://github.com/yossilevii100/double-ellipsoid-clip" target="_blank">💻 GitHub</a>
+      <a class="btn btn-custom" href="https://colab.research.google.com/gist/yossilevii100/aa3ca61e69ff5e1c0cd9cd6ddebd612e/untitled3.ipynb" target="_blank">⚗️ Colab Demo</a>
+    </div>
+    <img class="teaser" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/teaser.png" alt="Teaser">
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/4nJCuGGfirw" title="YouTube video" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- Abstract Section -->
+  <section class="section" id="abstract">
+    <h2>Abstract</h2>
+    <p>Contrastive Language–Image Pre‑Training (CLIP) is instrumental across many domains, yet its embedding geometry is not fully understood. We examine the <strong>raw (pre‑normalized)</strong> features and show that image and text reside on <strong>linearly separable ellipsoid shells</strong>, both <strong>shifted away from the origin</strong>. We explain the benefits of this structure and introduce a notion of <em>conformity</em>, which closely matches cosine similarity to the modality mean. We further connect this geometry to the <em>modality gap</em> and the <em>narrow‑cone</em> effect.</p>
+  </section>
+
+  <!-- Key Insights Section -->
+  <section class="section" id="insights">
+    <h2>Key Insights</h2>
+    <div class="insights-grid">
+      <div class="card-insight">
+        <h3>Double-Ellipsoid Geometry</h3>
+        <p>Image and text features occupy distinct, shifted ellipsoid shells; their separability explains the <em>modality gap</em> and <em>Narrow Cone Effect</em>.</p>
+      </div>
+      <div class="card-insight">
+        <h3>Conformity ≈ Mean-Similarity</h3>
+        <p>A sample's conformity—the average cosine similarity to all others—can be estimated by its cosine similarity to the modality mean.</p>
+      </div>
+      <div class="card-insight">
+        <h3>Optimal Convergence</h3>
+        <p>The alignment between conformity distributions of text and images is maximized in this geometry.</p>
+      </div>
+      <div class="card-insight">
+        <h3>Practical Implications</h3>
+        <p>Understanding this geometry motivates simple diagnostics and improved alignment methods for downstream tasks.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Colab Demo Section -->
+  <section class="section" id="colab">
+    <h2>Try it in Colab</h2>
+    <p>Run our quick demo on your browser with no setup required.</p>
+    <a class="btn btn-custom" href="https://colab.research.google.com/gist/yossilevii100/aa3ca61e69ff5e1c0cd9cd6ddebd612e/untitled3.ipynb" target="_blank">Open Colab Notebook</a>
+    <pre>git clone https://github.com/yossilevii100/double-ellipsoid-clip.git
+cd double-ellipsoid-clip
+pip install -r requirements.txt
+# open the notebook Double-Ellipsoid-Clip.ipynb</pre>
+  </section>
+
+  <!-- Follow-up Section -->
+  <section class="section" id="follow-up">
+    <h2>Follow-up Work</h2>
+    <p>Check out our follow-up ICML 2025 paper:</p>
+    <div class="follow-up">
+      <img src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/followup_nice.png" alt="Follow-up Paper Figure">
+    </div>
+  </section>
+
+  <!-- Caltech Talk Section -->
+  <section class="section" id="caltech">
+    <h2>Caltech Talk</h2>
+    <p>We presented this work and the follow-up paper at Caltech. Click below to play:</p>
+    <div class="video-container">
+      <iframe src="https://drive.google.com/file/d/13G6lymCSy6RgKj4VmaGgePG2L3qkqWIB/preview" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- BibTeX Section -->
+  <section class="section" id="bibtex">
+    <h2>BibTeX</h2>
+    <pre>@inproceedings{levi2025double,
+  title={The Double-Ellipsoid Geometry of CLIP},
+  author={Levi, Meir Yossef and Gilboa, Guy},
+  booktitle={International Conference on Machine Learning (ICML)},
+  year={2025}
+}</pre>
+  </section>
+
+  <footer>
+    &copy; 2025 <a href="https://yossilevii100.github.io">Meir Yossef Levi</a> &middot; <a href="https://guygilboa.net.technion.ac.il/">Guy Gilboa</a> &middot; Technion
+  </footer>
+
+</body>
+</html>
