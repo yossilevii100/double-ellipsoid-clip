@@ -12,25 +12,12 @@
   <style>
     body { font-family: 'Roboto', sans-serif; background: #fafafa; color: #222; margin:0; padding-top:70px; overflow-x:hidden; }
     h1, h2, h3 { font-family: 'Poppins', sans-serif; }
-    
+
     /* Global links */
     a { color: #4b0082; text-decoration: none; position: relative; transition: 0.3s; }
-    a:hover {
-      color: #a259ff;
-    }
-    a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -2px;
-      left: 0;
-      background-color: #a259ff;
-      transition: width 0.3s ease-in-out;
-    }
-    a:hover::after {
-      width: 100%;
-    }
+    a:hover { color: #a259ff; }
+    a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 0; background-color: #a259ff; transition: width 0.3s ease-in-out; }
+    a:hover::after { width: 100%; }
 
     /* Top Navigation */
     .topnav {
@@ -57,20 +44,16 @@
     /* Section styling */
     section { 
       width: 100%;
-      display:flex;
-      justify-content:center;
+      padding: 60px 5%;
       margin: 20px 0;
-    }
-    .section-content {
-      width: 100%;
-      max-width: 1000px; /* constrain width */
-      padding: 60px 20px;
       border-radius: 20px;
       box-shadow: 0 10px 20px rgba(162,89,255,0.15);
       transition: transform 0.3s, box-shadow 0.3s; 
       background: linear-gradient(145deg, #ffffff, #f2f0ff);
     }
-    .section-content:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(162,89,255,0.2); }
+    section:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(162,89,255,0.2); }
+
+    .section-content { max-width:1000px; margin:auto; }
 
     h1 { font-size: 3rem; font-weight: 800; text-align:center; color:#a259ff; }
     h2 { font-size: 2rem; color:#4b0082; margin-bottom:20px; text-align:center; }
@@ -83,15 +66,9 @@
     .card-insight h3 { color: #a259ff; }
 
     /* Buttons */
-    .btn-custom { display: inline-flex; align-items: center; margin:5px; padding:10px 20px; background:#a259ff; color:#fff; border:none; border-radius:8px; font-weight:600; transition:0.3s; cursor:pointer; }
+    .btn-custom { display: inline-flex; align-items: center; margin:5px; padding:10px 20px; background:#a259ff; color:#fff; border:none; border-radius:8px; font-weight:600; transition:0.3s; cursor:pointer; text-decoration:none; }
     .btn-custom:hover { background:#6f2da8; transform: translateY(-2px); }
     .btn-custom img { margin-right:8px; height:20px; }
-
-    /* Fancy buttons row under authors */
-    .authors-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 15px; }
-    .authors-buttons a { display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 8px; font-weight:600; color:#fff; text-decoration:none; background: linear-gradient(45deg, #a259ff, #6f2da8); transition: transform 0.2s ease, box-shadow 0.2s ease; }
-    .authors-buttons a:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(162,89,255,0.4); }
-    .authors-buttons a img { height:20px; width:20px; }
 
     /* Media and code */
     .poster { width:100%; max-width:1000px; border-radius:20px; box-shadow:0 0 30px rgba(162,89,255,0.15); margin:20px 0; display:block; margin-left:auto; margin-right:auto; }
@@ -119,15 +96,22 @@
     <div class="section-content">
       <h1>The Double-Ellipsoid Geometry of CLIP</h1>
       <h2>ICML 2025</h2>
-      <p style="text-align:center;"><a href="https://yossilevii100.github.io">Meir Yossef Levi</a> &middot; <a href="https://guygilboa.net.technion.ac.il/">Guy Gilboa</a> &middot; Technion</p>
-
-      <!-- Fancy Buttons under authors -->
-      <div class="authors-buttons">
-        <a href="https://arxiv.org/abs/2411.14517" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/ArXiv_logo.svg" alt="Arxiv"> Arxiv</a>
-        <a href="https://github.com/yossilevii100/double-ellipsoid-clip" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub"> Code</a>
-        <a href="https://www.youtube.com/watch?v=4nJCuGGfirw" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube"> Presentation</a>
+      <p style="text-align:center;">
+        <a href="https://yossilevii100.github.io">Meir Yossef Levi</a> &middot; 
+        <a href="https://guygilboa.net.technion.ac.il/">Guy Gilboa</a> &middot; Technion
+      </p>
+      <!-- Fancy buttons row -->
+      <div style="text-align:center; margin-top:15px;">
+        <a class="btn-custom" href="https://arxiv.org/abs/2411.14517" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/ArXiv_logo_2022.svg/512px-ArXiv_logo_2022.svg.png" alt="Arxiv"> Arxiv
+        </a>
+        <a class="btn-custom" href="https://github.com/yossilevii100/double-ellipsoid-clip" target="_blank">
+          <i class="fab fa-github" style="margin-right:8px;"></i> Code
+        </a>
+        <a class="btn-custom" href="https://www.youtube.com/watch?v=4nJCuGGfirw" target="_blank">
+          <i class="fas fa-video" style="margin-right:8px;"></i> Presentation
+        </a>
       </div>
-
       <img class="poster" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/clip_poster.png" alt="Main Paper Poster">
     </div>
   </section>
@@ -170,7 +154,9 @@
     <div class="section-content">
       <h2>Try it in Colab</h2>
       <p>Run our quick demo on your browser with no setup required.</p>
-      <a class="btn-custom" href="https://colab.research.google.com/gist/yossilevii100/aa3ca61e69ff5e1c0cd9cd6ddebd612e/untitled3.ipynb" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Colaboratory_SVG_Logo.svg" alt="Colab"> Open Colab Notebook</a>
+      <a class="btn-custom" href="https://colab.research.google.com/gist/yossilevii100/aa3ca61e69ff5e1c0cd9cd6ddebd612e/untitled3.ipynb" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Colaboratory_SVG_Logo.svg" alt="Colab"> Open Colab Notebook
+      </a>
       <pre>git clone https://github.com/yossilevii100/double-ellipsoid-clip.git
 cd double-ellipsoid-clip
 pip install -r requirements.txt
@@ -184,11 +170,17 @@ pip install -r requirements.txt
       <h2>Follow-up Work</h2>
       <img class="poster" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/whitened_poster.png" alt="Follow-up Poster">
       <p>Check out our follow-up ICML 2025 paper on analyzing CLIP in a probabilistic manner:</p>
-      <a class="btn-custom" href="https://arxiv.org/abs/2505.06934" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/ArXiv_logo.svg" alt="arXiv"> arXiv</a>
-      <a class="btn-custom" href="https://icml.cc/virtual/2025/poster/45897" target="_blank"><i class="fas fa-chalkboard-teacher"></i> ICML Poster</a>
-      <a class="btn-custom" href="https://github.com/rbetser/W_CLIP" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-      <a class="btn-custom" href="https://colab.research.google.com/github/rbetser/W_CLIP/blob/main/calc_log_like_image_demo.ipynb" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Colaboratory_SVG_Logo.svg" alt="Colab"> Colab Demo (Image Likelihood)</a>
-      <a class="btn-custom" href="https://colab.research.google.com/github/rbetser/W_CLIP/blob/main/calc_log_like_text_demo.ipynb" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Colaboratory_SVG_Logo.svg" alt="Colab"> Colab Demo (Text Likelihood)</a>
+      <a class="btn-custom" href="https://arxiv.org/abs/2505.06934" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/ArXiv_logo_2022.svg/512px-ArXiv_logo_2022.svg.png" alt="Arxiv"> arXiv
+      </a>
+      <a class="btn-custom" href="https://icml.cc/virtual/2025/poster/45897" target="_blank"><i class="fas fa-chalkboard-teacher" style="margin-right:8px;"></i> ICML Poster</a>
+      <a class="btn-custom" href="https://github.com/rbetser/W_CLIP" target="_blank"><i class="fab fa-github" style="margin-right:8px;"></i> GitHub</a>
+      <a class="btn-custom" href="https://colab.research.google.com/github/rbetser/W_CLIP/blob/main/calc_log_like_image_demo.ipynb" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Colaboratory_SVG_Logo.svg" alt="Colab"> Colab Demo (Image Likelihood)
+      </a>
+      <a class="btn-custom" href="https://colab.research.google.com/github/rbetser/W_CLIP/blob/main/calc_log_like_text_demo.ipynb" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Colaboratory_SVG_Logo.svg" alt="Colab"> Colab Demo (Text Likelihood)
+      </a>
     </div>
   </section>
 
@@ -227,4 +219,3 @@ pip install -r requirements.txt
   </script>
 
 </body>
-</html>
