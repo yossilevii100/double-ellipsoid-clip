@@ -19,17 +19,20 @@
   <style>
     body { font-family: 'Roboto', sans-serif; background: linear-gradient(135deg, #0d0d0d, #1a1a2e); color: #f0f0f0; }
     h1, h2, h3 { font-family: 'Poppins', sans-serif; }
-    .hero { text-align: center; padding: 80px 20px; }
-    .hero h1 { font-size: 3rem; font-weight: 800; color: #a259ff; }
+    .hero { text-align: center; padding: 100px 20px; background: linear-gradient(135deg, #1a0d2f, #0d1a3f); border-radius: 20px; margin: 20px; box-shadow: 0 0 40px rgba(162,89,255,0.7); }
+    .hero h1 { font-size: 3rem; font-weight: 800; color: #a259ff; text-shadow: 2px 2px 6px rgba(0,0,0,0.7); }
     .hero h4 { font-size: 1.5rem; margin-top: 10px; color: #ffffff; }
-    .hero .btn-custom { margin: 5px; background: linear-gradient(90deg,#a259ff,#00d4ff); color: #fff; border: none; font-weight: 600; }
+    .hero p { font-size: 1.2rem; color: #d0d0ff; }
+    .hero .btn-custom { margin: 5px; background: linear-gradient(90deg,#a259ff,#00d4ff); color: #fff; border: none; font-weight: 600; transition: 0.3s; }
+    .hero .btn-custom:hover { transform: translateY(-2px); }
     .section { padding: 60px 20px; max-width: 1000px; margin: auto; }
-    .card-insight { background: rgba(50,50,80,0.8); border-radius: 15px; padding: 25px; margin: 15px 0; }
+    .card-insight { background: rgba(40,40,70,0.9); border-radius: 20px; padding: 30px; margin: 20px 0; box-shadow: 0 0 20px rgba(0,212,255,0.5); }
     .card-insight h3 { color: #00d4ff; }
-    .teaser { width: 100%; max-width: 600px; border-radius: 15px; box-shadow: 0 0 20px rgba(162,89,255,0.6); margin: 30px 0; }
-    a.btn-custom:hover { opacity: 0.85; transition: 0.3s; }
-    pre { background: rgba(30,30,50,0.8); padding: 15px; border-radius: 10px; overflow-x: auto; }
-    footer { text-align: center; padding: 40px 20px; font-size: 0.9rem; color: #888; }
+    .teaser { width: 100%; max-width: 650px; border-radius: 20px; box-shadow: 0 0 30px rgba(162,89,255,0.7); margin: 40px 0; transition: transform 0.3s; }
+    .teaser:hover { transform: scale(1.03); }
+    pre { background: rgba(30,30,50,0.9); padding: 20px; border-radius: 15px; overflow-x: auto; }
+    footer { text-align: center; padding: 50px 20px; font-size: 0.95rem; color: #888; }
+    .icon { margin-right: 8px; }
   </style>
 </head>
 <body>
@@ -40,11 +43,11 @@
     <h4>ICML 2025</h4>
     <p>Meir Yossef Levi, Guy Gilboa &middot; Technion - Israel Institute of Technology</p>
     <div>
-      <a class="btn btn-custom" href="https://arxiv.org/abs/2411.14517" target="_blank">📄 arXiv</a>
-      <a class="btn btn-custom" href="https://icml.cc/virtual/2025/poster/45348" target="_blank">🎓 ICML Poster</a>
-      <a class="btn btn-custom" href="https://github.com/yossilevii100/double-ellipsoid-clip" target="_blank">💻 GitHub</a>
-      <a class="btn btn-custom" href="https://colab.research.google.com/gist/yossilevii100/aa3ca61e69ff5e1c0cd9cd6ddebd612e/untitled3.ipynb" target="_blank">⚗️ Colab Demo</a>
-      <a class="btn btn-custom" href="https://www.youtube.com/watch?v=4nJCuGGfirw" target="_blank">▶️ Video</a>
+      <a class="btn btn-custom" href="https://arxiv.org/abs/2411.14517" target="_blank"><span class="icon">📄</span>arXiv</a>
+      <a class="btn btn-custom" href="https://icml.cc/virtual/2025/poster/45348" target="_blank"><span class="icon">🎓</span>ICML Poster</a>
+      <a class="btn btn-custom" href="https://github.com/yossilevii100/double-ellipsoid-clip" target="_blank"><span class="icon">💻</span>GitHub</a>
+      <a class="btn btn-custom" href="https://colab.research.google.com/gist/yossilevii100/aa3ca61e69ff5e1c0cd9cd6ddebd612e/untitled3.ipynb" target="_blank"><span class="icon">⚗️</span>Colab Demo</a>
+      <a class="btn btn-custom" href="https://www.youtube.com/watch?v=4nJCuGGfirw" target="_blank"><span class="icon">▶️</span>Video</a>
     </div>
     <img class="teaser" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/teaser.png" alt="Double-Ellipsoid CLIP Teaser">
   </section>
@@ -90,11 +93,11 @@ pip install -r requirements.txt
   <!-- BibTeX Section -->
   <section class="section">
     <h2>BibTeX</h2>
-    <pre>@article{levi2024double,
+    <pre>@inproceedings{levi2025double,
   title={The Double-Ellipsoid Geometry of CLIP},
   author={Levi, Meir Yossef and Gilboa, Guy},
-  journal={arXiv preprint arXiv:2411.14517},
-  year={2024}
+  booktitle={International Conference on Machine Learning (ICML)},
+  year={2025}
 }</pre>
   </section>
 
