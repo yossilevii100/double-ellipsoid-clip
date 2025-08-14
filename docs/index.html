@@ -10,9 +10,31 @@
   <script src="https://kit.fontawesome.com/ad96f96272.js" crossorigin="anonymous"></script>
 
   <style>
-    body { font-family: 'Roboto', sans-serif; background: #fafafa; color: #222; margin:0; padding:0; }
+    body { font-family: 'Roboto', sans-serif; background: #fafafa; color: #222; margin:0; padding-top:70px; }
     h1, h2, h3 { font-family: 'Poppins', sans-serif; }
     a { text-decoration: none; }
+
+    /* Top Navigation */
+    .topnav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #a259ff;
+      display: flex;
+      justify-content: center;
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 10px 0;
+    }
+    .topnav a {
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      font-weight:600;
+      font-size:1rem;
+      transition: 0.3s;
+    }
+    .topnav a:hover { background: rgba(255,255,255,0.2); border-radius:5px; }
 
     /* Section styling */
     section { 
@@ -26,7 +48,6 @@
     }
     section:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(162,89,255,0.2); }
 
-    /* Headers */
     h1 { font-size: 3rem; font-weight: 800; text-align:center; color:#a259ff; }
     h2 { font-size: 2rem; color:#4b0082; margin-bottom:20px; text-align:center; }
     p, li { font-size:1.1rem; line-height:1.6; color:#333; }
@@ -48,12 +69,24 @@
     pre { background:#eaeaea; padding:20px; border-radius:15px; overflow-x:auto; color:#222; }
 
     footer { text-align:center; padding:50px 20px; font-size:0.95rem; color:#555; }
+
   </style>
 </head>
 <body>
 
+  <!-- Top Navigation -->
+  <div class="topnav">
+    <a href="#hero">Home</a>
+    <a href="#abstract">Abstract</a>
+    <a href="#insights">Key Insights</a>
+    <a href="#colab">Colab Demo</a>
+    <a href="#followup">Follow-up</a>
+    <a href="#caltech">Caltech Talk</a>
+    <a href="#bibtex">BibTeX</a>
+  </div>
+
   <!-- Hero Section -->
-  <section>
+  <section id="hero">
     <h1>The Double-Ellipsoid Geometry of CLIP</h1>
     <h2>ICML 2025</h2>
     <p style="text-align:center;"><a href="https://yossilevii100.github.io" style="color:#4b0082; font-weight:600;">Meir Yossef Levi</a> &middot; <a href="https://guygilboa.net.technion.ac.il/" style="color:#4b0082; font-weight:600;">Guy Gilboa</a> &middot; Technion</p>
@@ -61,13 +94,13 @@
   </section>
 
   <!-- Abstract Section -->
-  <section>
+  <section id="abstract">
     <h2>Abstract</h2>
     <p>Contrastive Language–Image Pre‑Training (CLIP) is instrumental across many domains, yet its embedding geometry is not fully understood. We examine the <strong>raw (pre‑normalized)</strong> features and show that image and text reside on <strong>linearly separable ellipsoid shells</strong>, both <strong>shifted away from the origin</strong>. We explain the benefits of this structure and introduce a notion of <em>conformity</em>, which closely matches cosine similarity to the modality mean. We further connect this geometry to the <em>modality gap</em> and the <em>narrow‑cone</em> effect.</p>
   </section>
 
   <!-- Key Insights Section -->
-  <section>
+  <section id="insights">
     <h2>Key Insights</h2>
     <div class="insights-grid">
       <div class="card-insight">
@@ -90,7 +123,7 @@
   </section>
 
   <!-- Colab Demo Section -->
-  <section>
+  <section id="colab">
     <h2>Try it in Colab</h2>
     <p>Run our quick demo on your browser with no setup required.</p>
     <a class="btn-custom" href="https://colab.research.google.com/gist/yossilevii100/aa3ca61e69ff5e1c0cd9cd6ddebd612e/untitled3.ipynb" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Colaboratory_SVG_Logo.svg" alt="Colab"> Open Colab Notebook</a>
@@ -101,7 +134,7 @@ pip install -r requirements.txt
   </section>
 
   <!-- Follow-up Paper Section -->
-  <section>
+  <section id="followup">
     <h2>Follow-up Work</h2>
     <img class="poster" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/whitened_poster.png" alt="Follow-up Poster">
     <p>Check out our follow-up ICML 2025 paper on analyzing CLIP in a probabilistic manner:</p>
@@ -113,16 +146,16 @@ pip install -r requirements.txt
   </section>
 
   <!-- Caltech Talk Section -->
-  <section>
-    <h2>Talk in Vision Lab, Caltech (Pietro Perona's Lab)</h2>
-    <p>Watch the one-hour recorded talk:</p>
+  <section id="caltech">
+    <h2>Caltech Talk</h2>
+    <p>Watch the 50-minute recorded talk (starts when you press play):</p>
     <iframe src="https://drive.google.com/file/d/13G6lymCSy6RgKj4VmaGgePG2L3qkqWIB/preview" title="Caltech Talk" frameborder="0" allowfullscreen></iframe>
   </section>
 
   <!-- BibTeX Section -->
-  <section>
+  <section id="bibtex">
     <h2>BibTeX</h2>
-    <pre id="bibtex">@inproceedings{levi2025double,
+    <pre id="bibtex-text">@inproceedings{levi2025double,
   title={The Double-Ellipsoid Geometry of CLIP},
   author={Levi, Meir Yossef and Gilboa, Guy},
   booktitle={International Conference on Machine Learning (ICML)},
@@ -137,7 +170,7 @@ pip install -r requirements.txt
 
   <script>
     function copyBibtex() {
-      const bib = document.getElementById('bibtex').innerText;
+      const bib = document.getElementById('bibtex-text').innerText;
       navigator.clipboard.writeText(bib).then(() => { alert('BibTeX copied!'); });
     }
   </script>
