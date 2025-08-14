@@ -59,6 +59,11 @@
     h2 { font-size: 2rem; color:#4b0082; margin-bottom:20px; text-align:center; }
     p, li { font-size:1.1rem; line-height:1.6; color:#333; }
 
+    /* Header portraits */
+    .authors-container { display: flex; justify-content: center; gap: 40px; margin-top: 15px; flex-wrap: wrap; }
+    .author { display: flex; flex-direction: column; align-items: center; }
+    .author img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; margin-bottom: 5px; }
+
     /* Two-column layout for Abstract + Teaser */
     .abstract-container { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; justify-content: center; }
     .abstract-text { flex: 1 1 400px; min-width:300px; }
@@ -101,10 +106,22 @@
     <div class="section-content">
       <h1>The Double-Ellipsoid Geometry of CLIP</h1>
       <h2>ICML 2025</h2>
-      <p style="text-align:center;">
-        <a href="https://yossilevii100.github.io">Meir Yossef Levi</a> &middot; 
-        <a href="https://guygilboa.net.technion.ac.il/">Guy Gilboa</a> &middot; Technion
-      </p>
+
+      <!-- Author portraits -->
+      <div class="authors-container">
+        <div class="author">
+          <img src="misc/yossi.jfif" alt="Meir Yossef Levi">
+          <a href="https://yossilevii100.github.io">Meir Yossef Levi</a>
+        </div>
+        <div class="author">
+          <img src="misc/guy.png" alt="Guy Gilboa">
+          <a href="https://guygilboa.net.technion.ac.il/">Guy Gilboa</a>
+        </div>
+        <div class="author">
+          <span>Technion</span>
+        </div>
+      </div>
+
       <!-- Fancy buttons row -->
       <div style="text-align:center; margin-top:15px;">
         <a class="btn-custom" href="https://arxiv.org/abs/2411.14517" target="_blank">
@@ -117,6 +134,7 @@
           <i class="fas fa-video" style="margin-right:8px;"></i> Presentation
         </a>
       </div>
+
       <img class="poster" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/clip_poster.png" alt="Main Paper Poster">
     </div>
   </section>
