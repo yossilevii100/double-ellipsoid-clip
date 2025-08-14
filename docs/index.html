@@ -11,52 +11,32 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://kit.fontawesome.com/ad96f96272.js" crossorigin="anonymous"></script>
 
-  <meta property="og:image" content="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/teaser.png">
-  <meta property="og:title" content="The Double-Ellipsoid Geometry of CLIP">
-  <meta property="og:description" content="ICML 2025 paper on CLIP latent space geometry, conformity, and modality gap.">
-
   <style>
-    body { font-family: 'Roboto', sans-serif; background: #fff; color: #222; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Roboto', sans-serif; background: #fff; color: #222; margin:0; padding:0; }
     h1, h2, h3 { font-family: 'Poppins', sans-serif; }
-    .navbar { background: linear-gradient(135deg, #a259ff, #00d4ff); }
-    .navbar-nav .nav-link { color: #fff; font-weight: 600; }
-    .navbar-nav .nav-link:hover { color: #222; }
+    section { padding: 60px 20px; max-width: 1000px; margin: auto; }
+    a { text-decoration: none; }
+
+    /* Sticky Navbar */
+    .navbar { position: sticky; top: 0; z-index: 1000; }
+    .navbar-nav .nav-link { cursor: pointer; }
+
+    /* Hero Section */
     .hero { text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #a259ff, #00d4ff); border-radius: 20px; margin: 20px; color: #fff; }
     .hero h1 { font-size: 3rem; font-weight: 800; text-shadow: 2px 2px 6px rgba(0,0,0,0.15); }
     .hero h4 { font-size: 1.5rem; margin-top: 10px; }
     .hero p { font-size: 1.2rem; }
-    .hero .btn-custom { margin: 5px; background: #fff; color: #222; border: none; font-weight: 600; transition: 0.3s; }
+    .hero .btn-custom { margin: 5px; background: #fff; color: #222; border-radius: 10px; font-weight: 600; padding: 10px 15px; display: inline-flex; align-items:center; gap:5px; transition: 0.3s; }
     .hero .btn-custom:hover { background: #e0e0e0; transform: translateY(-2px); }
-    .section { padding: 60px 20px; max-width: 1000px; margin: auto; }
     .teaser { width: 100%; max-width: 650px; border-radius: 20px; box-shadow: 0 0 30px rgba(162,89,255,0.15); margin: 40px 0; transition: transform 0.3s; }
     .teaser:hover { transform: scale(1.03); }
-    pre { background: #eaeaea; padding: 20px; border-radius: 15px; overflow-x: auto; color: #222; }
-    footer { text-align: center; padding: 50px 20px; font-size: 0.95rem; color: #555; }
-    iframe { border-radius: 20px; box-shadow: 0 0 30px rgba(162,89,255,0.15); margin-top: 20px; }
 
     /* Video containers */
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 ratio */
-      height: 0;
-      overflow: hidden;
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(162,89,255,0.15);
-      margin-top: 20px;
-      max-width: 650px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
+    .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px; box-shadow: 0 0 30px rgba(162,89,255,0.15); margin: 20px auto; max-width: 650px; }
+    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-    /* Key insights cards */
+    /* Key insights */
     .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
     .card-insight { background: linear-gradient(145deg, #fff, #f0f0f5); border-radius: 20px; padding: 30px; box-shadow: 0 10px 20px rgba(162,89,255,0.2); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
     .card-insight:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(162,89,255,0.3); }
@@ -64,22 +44,29 @@
 
     /* Follow-up image */
     .follow-up img { width: 100%; border-radius: 20px; box-shadow: 0 0 30px rgba(162,89,255,0.15); }
+
+    /* Buttons in sections */
+    .btn-section { margin: 10px 5px; border-radius: 10px; padding: 10px 15px; font-weight: 600; display: inline-flex; align-items:center; gap:5px; background:#a259ff; color:#fff; transition:0.3s; }
+    .btn-section:hover { background:#8330ff; text-decoration:none; }
+
+    /* Footer */
+    footer { text-align:center; padding:50px 20px; font-size:0.95rem; color:#555; background:#f8f8f8; margin-top:40px; }
   </style>
 </head>
 <body>
 
   <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-light">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background: linear-gradient(135deg, #a259ff, #00d4ff);">
     <div class="container">
       <a class="navbar-brand text-white" href="#">Double-Ellipsoid CLIP</a>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#abstract">Abstract</a></li>
-          <li class="nav-item"><a class="nav-link" href="#insights">Key Insights</a></li>
-          <li class="nav-item"><a class="nav-link" href="#colab">Colab</a></li>
-          <li class="nav-item"><a class="nav-link" href="#follow-up">Follow-up</a></li>
-          <li class="nav-item"><a class="nav-link" href="#caltech">Caltech Talk</a></li>
-          <li class="nav-item"><a class="nav-link" href="#bibtex">BibTeX</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#abstract">Abstract</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#insights">Key Insights</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#colab">Colab</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#follow-up">Follow-up</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#caltech">Caltech Talk</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#bibtex">BibTeX</a></li>
         </ul>
       </div>
     </div>
@@ -92,10 +79,10 @@
     <p><a href="https://yossilevii100.github.io" style="color:#fff;text-decoration:underline;">Meir Yossef Levi</a>, 
        <a href="https://guygilboa.net.technion.ac.il/" style="color:#fff;text-decoration:underline;">Guy Gilboa</a> &middot; Technion</p>
     <div>
-      <a class="btn btn-custom" href="https://arxiv.org/abs/2411.14517" target="_blank">📄 arXiv</a>
-      <a class="btn btn-custom" href="https://icml.cc/virtual/2025/poster/45348" target="_blank">🎓 ICML Poster</a>
-      <a class="btn btn-custom" href="https://github.com/yossilevii100/double-ellipsoid-clip" target="_blank">💻 GitHub</a>
-      <a class="btn btn-custom" href="https://colab.research.google.com/gist/yossilevii100/aa3ca61e69ff5e1c0cd9cd6ddebd612e/untitled3.ipynb" target="_blank">⚗️ Colab Demo</a>
+      <a class="btn-custom" href="https://arxiv.org/abs/2411.14517" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/ArXiv_logo.svg" style="height:18px;"> arXiv</a>
+      <a class="btn-custom" href="https://icml.cc/virtual/2025/poster/45348" target="_blank"><i class="fas fa-chalkboard-teacher"></i> ICML Poster</a>
+      <a class="btn-custom" href="https://github.com/yossilevii100/double-ellipsoid-clip" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      <a class="btn-custom" href="https://colab.research.google.com/gist/yossilevii100/aa3ca61e69ff5e1c0cd9cd6ddebd612e/untitled3.ipynb" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Colaboratory_SVG_Logo.svg" style="height:18px;"> Colab Demo</a>
     </div>
     <img class="teaser" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/teaser.png" alt="Teaser">
     <div class="video-container">
@@ -104,13 +91,13 @@
   </section>
 
   <!-- Abstract Section -->
-  <section class="section" id="abstract">
+  <section id="abstract">
     <h2>Abstract</h2>
     <p>Contrastive Language–Image Pre‑Training (CLIP) is instrumental across many domains, yet its embedding geometry is not fully understood. We examine the <strong>raw (pre‑normalized)</strong> features and show that image and text reside on <strong>linearly separable ellipsoid shells</strong>, both <strong>shifted away from the origin</strong>. We explain the benefits of this structure and introduce a notion of <em>conformity</em>, which closely matches cosine similarity to the modality mean. We further connect this geometry to the <em>modality gap</em> and the <em>narrow‑cone</em> effect.</p>
   </section>
 
   <!-- Key Insights Section -->
-  <section class="section" id="insights">
+  <section id="insights">
     <h2>Key Insights</h2>
     <div class="insights-grid">
       <div class="card-insight">
@@ -132,11 +119,11 @@
     </div>
   </section>
 
-  <!-- Colab Demo Section -->
-  <section class="section" id="colab">
+  <!-- Colab Section -->
+  <section id="colab">
     <h2>Try it in Colab</h2>
-    <p>Run our quick demo on your browser with no setup required.</p>
-    <a class="btn btn-custom" href="https://colab.research.google.com/gist/yossilevii100/aa3ca61e69ff5e1c0cd9cd6ddebd612e/untitled3.ipynb" target="_blank">Open Colab Notebook</a>
+    <p>Run our quick demo directly in your browser:</p>
+    <a class="btn-section" href="https://colab.research.google.com/gist/yossilevii100/aa3ca61e69ff5e1c0cd9cd6ddebd612e/untitled3.ipynb" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Colaboratory_SVG_Logo.svg" style="height:18px;"> Open Colab Notebook</a>
     <pre>git clone https://github.com/yossilevii100/double-ellipsoid-clip.git
 cd double-ellipsoid-clip
 pip install -r requirements.txt
@@ -144,7 +131,7 @@ pip install -r requirements.txt
   </section>
 
   <!-- Follow-up Section -->
-  <section class="section" id="follow-up">
+  <section id="follow-up">
     <h2>Follow-up Work</h2>
     <p>Check out our follow-up ICML 2025 paper:</p>
     <div class="follow-up">
@@ -153,7 +140,7 @@ pip install -r requirements.txt
   </section>
 
   <!-- Caltech Talk Section -->
-  <section class="section" id="caltech">
+  <section id="caltech">
     <h2>Caltech Talk</h2>
     <p>We presented this work and the follow-up paper at Caltech. Click below to play:</p>
     <div class="video-container">
@@ -162,19 +149,27 @@ pip install -r requirements.txt
   </section>
 
   <!-- BibTeX Section -->
-  <section class="section" id="bibtex">
+  <section id="bibtex">
     <h2>BibTeX</h2>
-    <pre>@inproceedings{levi2025double,
+    <pre id="bibtex-text">@inproceedings{levi2025double,
   title={The Double-Ellipsoid Geometry of CLIP},
   author={Levi, Meir Yossef and Gilboa, Guy},
   booktitle={International Conference on Machine Learning (ICML)},
   year={2025}
 }</pre>
+    <button class="btn-section" onclick="copyBibtex()"><i class="fas fa-copy"></i> Copy BibTeX</button>
   </section>
 
   <footer>
     &copy; 2025 <a href="https://yossilevii100.github.io">Meir Yossef Levi</a> &middot; <a href="https://guygilboa.net.technion.ac.il/">Guy Gilboa</a> &middot; Technion
   </footer>
+
+  <script>
+    function copyBibtex() {
+      const bib = document.getElementById('bibtex-text').innerText;
+      navigator.clipboard.writeText(bib).then(() => alert("BibTeX copied to clipboard!"));
+    }
+  </script>
 
 </body>
 </html>
