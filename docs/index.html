@@ -16,8 +16,11 @@
   <meta property="og:description" content="ICML 2025 paper on CLIP latent space geometry, conformity, and modality gap.">
 
   <style>
-    body { font-family: 'Roboto', sans-serif; background: #fafafa; color: #222; }
+    body { font-family: 'Roboto', sans-serif; background: #fff; color: #222; }
     h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+    .navbar { background: linear-gradient(135deg, #a259ff, #00d4ff); }
+    .navbar-nav .nav-link { color: #fff; font-weight: 600; }
+    .navbar-nav .nav-link:hover { color: #222; }
     .hero { text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #a259ff, #00d4ff); border-radius: 20px; margin: 20px; color: #fff; }
     .hero h1 { font-size: 3rem; font-weight: 800; text-shadow: 2px 2px 6px rgba(0,0,0,0.15); }
     .hero h4 { font-size: 1.5rem; margin-top: 10px; }
@@ -25,28 +28,35 @@
     .hero .btn-custom { margin: 5px; background: #fff; color: #222; border: none; font-weight: 600; transition: 0.3s; }
     .hero .btn-custom:hover { background: #e0e0e0; transform: translateY(-2px); }
     .section { padding: 60px 20px; max-width: 1000px; margin: auto; }
-
-    /* Grid for insights */
-    .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-    .card-insight { background: linear-gradient(145deg, #fff, #f0f0f5); border-radius: 20px; padding: 30px; box-shadow: 0 10px 20px rgba(162,89,255,0.2); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
-    .card-insight:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(162,89,255,0.3); }
-    .card-insight h3 { color: #a259ff; }
-
     .teaser { width: 100%; max-width: 650px; border-radius: 20px; box-shadow: 0 0 30px rgba(162,89,255,0.15); margin: 40px 0; transition: transform 0.3s; }
     .teaser:hover { transform: scale(1.03); }
     pre { background: #eaeaea; padding: 20px; border-radius: 15px; overflow-x: auto; color: #222; }
     footer { text-align: center; padding: 50px 20px; font-size: 0.95rem; color: #555; }
-    .icon { margin-right: 8px; }
-
-    /* Responsive video container */
-    .video-container { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:20px; box-shadow:0 0 30px rgba(162,89,255,0.15); margin-top:20px; }
-    .video-container iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
+    iframe { border-radius: 20px; max-width: 100%; width: 100%; height: 450px; box-shadow: 0 0 30px rgba(162,89,255,0.15); margin-top: 20px; }
+    .follow-up img { width: 100%; border-radius: 20px; box-shadow: 0 0 30px rgba(162,89,255,0.15); }
   </style>
 </head>
 <body>
 
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <a class="navbar-brand text-white" href="#">The Double-Ellipsoid Geometry of CLIP</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#abstract">Abstract</a></li>
+          <li class="nav-item"><a class="nav-link" href="#insights">Key Insights</a></li>
+          <li class="nav-item"><a class="nav-link" href="#colab">Try it in Colab</a></li>
+          <li class="nav-item"><a class="nav-link" href="#follow-up">Follow-up Work</a></li>
+          <li class="nav-item"><a class="nav-link" href="#caltech">Caltech Talk</a></li>
+          <li class="nav-item"><a class="nav-link" href="#bibtex">BibTeX</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero" id="hero">
     <h1>The Double-Ellipsoid Geometry of CLIP</h1>
     <h4>ICML 2025</h4>
     <p><a href="https://yossilevii100.github.io" style="color:#fff; text-decoration:underline;">Meir Yossef Levi</a>, <a href="https://guygilboa.net.technion.ac.il/" style="color:#fff; text-decoration:underline;">Guy Gilboa</a> &middot; Technion - Israel Institute of Technology</p>
@@ -54,86 +64,4 @@
       <a class="btn btn-custom" href="https://arxiv.org/abs/2411.14517" target="_blank"><span class="icon">📄</span>arXiv</a>
       <a class="btn btn-custom" href="https://icml.cc/virtual/2025/poster/45348" target="_blank"><span class="icon">🎓</span>ICML Poster</a>
       <a class="btn btn-custom" href="https://github.com/yossilevii100/double-ellipsoid-clip" target="_blank"><span class="icon">💻</span>GitHub</a>
-      <a class="btn btn-custom" href="https://colab.research.google.com/gist/yossilevii100/aa3ca61e69ff5e1c0cd9cd6ddebd612e/untitled3.ipynb" target="_blank"><span class="icon">⚗️</span>Colab Demo</a>
-    </div>
-    <img class="teaser" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/teaser.png" alt="Double-Ellipsoid CLIP Teaser">
-
-    <!-- Embedded YouTube Video -->
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/4nJCuGGfirw" title="YouTube video player" allowfullscreen></iframe>
-    </div>
-  </section>
-
-  <!-- Abstract Section -->
-  <section class="section">
-    <h2>Abstract</h2>
-    <p>Contrastive Language–Image Pre‑Training (CLIP) is instrumental across many domains, yet its embedding geometry is not fully understood. We examine the <strong>raw (pre‑normalized)</strong> features and show that image and text reside on <strong>linearly separable ellipsoid shells</strong>, both <strong>shifted away from the origin</strong>. We explain the benefits of this structure—better embedding of instances by their uncertainty during contrastive training—and introduce a notion of <em>conformity</em>, which closely matches cosine similarity to the modality mean. We further connect this geometry to the <em>modality gap</em> and the <em>narrow‑cone</em> effect.</p>
-  </section>
-
-  <!-- Key Insights Section -->
-  <section class="section">
-    <h2>Key Insights</h2>
-    <div class="insights-grid">
-      <div class="card-insight">
-        <h3>Double-Ellipsoid Geometry</h3>
-        <p>Image and text features occupy distinct, shifted ellipsoid shells in the raw CLIP space; their separability explains the <em>modality gap</em> while their offset from the origin explains the <em>Narrow Cone Effect</em>.</p>
-      </div>
-      <div class="card-insight">
-        <h3>Conformity ≈ Mean-Similarity</h3>
-        <p>A sample's conformity—the average cosine similarity to all others—can be estimated by its cosine similarity to the modality mean.</p>
-      </div>
-      <div class="card-insight">
-        <h3>Why CLIP Converged to this position?</h3>
-        <p>We found that in this position the alignment between the conformity distribution of text and images is optimal.</p>
-      </div>
-      <div class="card-insight">
-        <h3>Practical Implications</h3>
-        <p>Understanding this geometry motivates simple diagnostics and improved alignment methods in downstream tasks.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Colab Demo Section -->
-  <section class="section">
-    <h2>Try it in Colab</h2>
-    <p>Run our quick demo on your browser with no setup required.</p>
-    <a class="btn btn-custom" href="https://colab.research.google.com/gist/yossilevii100/aa3ca61e69ff5e1c0cd9cd6ddebd612e/untitled3.ipynb" target="_blank">Open Colab Notebook</a>
-    <pre>git clone https://github.com/yossilevii100/double-ellipsoid-clip.git
-cd double-ellipsoid-clip
-pip install -r requirements.txt
-# open the notebook Double-Ellipsoid-Clip.ipynb</pre>
-  </section>
-
-  <!-- Follow-up Paper Section -->
-  <section class="section">
-    <h2>Follow-up Work</h2>
-    <p>Check out our follow-up ICML 2025 paper on analyzing CLIP in a probabilistic manner: <a href="https://arxiv.org/abs/2505.06934" target="_blank">Whitened CLIP as a Likelihood Surrogate of Images and Captions</a>.</p>
-  </section>
-
-  <!-- Caltech Talk Section -->
-  <section class="section">
-    <h2>Caltech Talk (Pietro Perona's Lab)</h2>
-    <p>I presented this work and the follow-up paper at Caltech. Watch the 50-minute recorded talk below:</p>
-    <div class="video-container">
-      <iframe src="https://drive.google.com/file/d/13G6lymCSy6RgKj4VmaGgePG2L3qkqWIB/preview?autoplay=1" title="Caltech Talk" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-  </section>
-
-  <!-- BibTeX Section -->
-  <section class="section">
-    <h2>BibTeX</h2>
-    <pre>@inproceedings{levi2025double,
-  title={The Double-Ellipsoid Geometry of CLIP},
-  author={Levi, Meir Yossef and Gilboa, Guy},
-  booktitle={International Conference on Machine Learning (ICML)},
-  year={2025}
-}</pre>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    &copy; 2025 <a href="https://yossilevii100.github.io">Meir Yossef Levi</a> &middot; <a href="https://guygilboa.net.technion.ac.il/">Guy Gilboa</a> &middot; Technion - Israel Institute of Technology
-  </footer>
-
-</body>
-</html>
+      <a class="btn btn-custom" href="https://colab.research.google
