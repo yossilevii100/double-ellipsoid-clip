@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Double-Ellipsoid Geometry of CLIP</title>
+  <meta name="description" content="Project page for 'The Double-Ellipsoid Geometry of CLIP' (ICML 2025): geometry of CLIP latent space as two non-co-centered ellipsoids, conformity, modality gap, and practical implications." />
+  <meta property="og:title" content="The Double-Ellipsoid Geometry of CLIP" />
+  <meta property="og:description" content="ICML 2025. We show CLIP's raw latent space forms two shifted, linearly-separable ellipsoids (image & text), introduce conformity, and connect to the modality gap." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/teaser.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Tailwind CSS CDN (works on GitHub Pages) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Accent gradient + subtle animations */
+    :root { --brand: 98 91 246; /* indigo-500 */ }
+    .grad { background-image: radial-gradient(1200px 600px at 20% -10%, rgb(var(--brand)/.15), transparent), radial-gradient(900px 600px at 80% 10%, rgba(20,184,166,.15), transparent); }
+    .glass { backdrop-filter: blur(10px); background: rgba(255,255,255,0.7); }
+    .dark .glass { background: rgba(17,24,39,0.5); }
+    .btn { @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 shadow hover:shadow-md transition; }
+    .btn-primary { @apply bg-indigo-600 text-white; }
+    .btn-ghost { @apply bg-white/80 dark:bg-white/10 dark:text-white text-gray-900; }
+    .section { @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  </style>
+</head>
+<body class="antialiased bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-950 text-gray-800 dark:text-gray-100">
+  <!-- HEADER / HERO -->
+  <header class="grad border-b border-gray-200/60 dark:border-gray-800/60">
+    <div class="section">
+      <nav class="flex items-center justify-between py-4">
+        <a href="#top" class="font-semibold tracking-tight text-xl">Double‑Ellipsoid CLIP</a>
+        <div class="flex items-center gap-3">
+          <a class="btn btn-ghost" href="#paper">Paper</a>
+          <a class="btn btn-ghost" href="#code">Code</a>
+          <a class="btn btn-ghost" href="#demo">Demo</a>
+          <button id="themeToggle" aria-label="Toggle dark mode" class="btn btn-ghost" title="Toggle dark mode">🌙</button>
+        </div>
+      </nav>
+    </div>
+    <div class="section pb-8 pt-6 md:pt-10">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h1 class="text-3xl sm:text-5xl font-black leading-tight">The Double‑Ellipsoid Geometry of CLIP</h1>
+          <p class="mt-3 text-lg text-gray-600 dark:text-gray-300">ICML 2025</p>
+          <p class="mt-3">Meir Yossef Levi, Guy Gilboa</p>
+          <p class="mt-3 max-w-prose text-gray-700 dark:text-gray-300">We show that CLIP's <em>raw</em> latent space forms two linearly‑separable, non‑co‑centered ellipsoids (image & text). We introduce <span class="italic">conformity</span> and connect this geometry to the modality gap and the narrow‑cone effect.</p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a class="btn btn-primary" href="https://arxiv.org/abs/2411.14517" target="_blank" rel="noopener">📄 arXiv</a>
+            <a class="btn btn-primary" href="https://icml.cc/virtual/2025/poster/45348" target="_blank" rel="noopener">🎓 ICML Page</a>
+            <a class="btn btn-primary" href="https://github.com/yossilevii100/double-ellipsoid-clip" target="_blank" rel="noopener">💻 GitHub</a>
+            <a class="btn btn-primary" href="https://colab.research.google.com/gist/yossilevii100/aa3ca61e69ff5e1c0cd9cd6ddebd612e/untitled3.ipynb" target="_blank" rel="noopener">⚗️ Colab Demo</a>
+            <a class="btn btn-primary" href="https://www.youtube.com/watch?v=4nJCuGGfirw" target="_blank" rel="noopener">▶️ Video</a>
+          </div>
+        </div>
+        <div class="relative">
+          <img class="w-full rounded-2xl shadow-lg ring-1 ring-black/5" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/teaser.png" alt="Double‑Ellipsoid CLIP teaser" />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABSTRACT -->
+  <section id="paper" class="section py-12">
+    <h2 class="text-2xl sm:text-3xl font-bold">Abstract</h2>
+    <p class="mt-4 max-w-3xl leading-relaxed text-gray-700 dark:text-gray-300">Contrastive Language–Image Pre‑Training (CLIP) is instrumental across many domains, yet its embedding geometry is not fully understood. We examine the <span class="font-semibold">raw (pre‑normalized)</span> features and show that image and text reside on <span class="font-semibold">linearly separable ellipsoid shells</span>, both <span class="font-semibold">shifted away from the origin</span>. We explain the benefits of this structure—better embedding of instances by their uncertainty during contrastive training—and introduce a notion of <span class="italic">conformity</span>, which closely matches cosine similarity to the modality mean. We further connect this geometry to the <span class="italic">modality gap</span> and the <span class="italic">narrow‑cone</span> effect.</p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a class="btn btn-ghost" href="https://arxiv.org/abs/2411.14517" target="_blank" rel="noopener">Read on arXiv</a>
+      <a class="btn btn-ghost" href="https://arxiv.org/html/2411.14517" target="_blank" rel="noopener">HTML version</a>
+      <a class="btn btn-ghost" href="https://openreview.net/forum?id=QGUju9B68Z" target="_blank" rel="noopener">OpenReview</a>
+    </div>
+  </section>
+
+  <!-- KEY INSIGHTS -->
+  <section class="section py-12">
+    <h2 class="text-2xl sm:text-3xl font-bold">Key insights</h2>
+    <div class="mt-6 grid md:grid-cols-2 gap-6">
+      <div class="glass rounded-2xl p-6 shadow">
+        <h3 class="font-semibold text-lg">Double‑ellipsoid geometry</h3>
+        <p class="mt-2 text-gray-700 dark:text-gray-300">Image and text features occupy distinct, shifted ellipsoid shells in the raw CLIP space; their separability explains the <span class="italic">modality gap</span>.</p>
+      </div>
+      <div class="glass rounded-2xl p-6 shadow">
+        <h3 class="font-semibold text-lg">Conformity ≈ mean‑similarity</h3>
+        <p class="mt-2 text-gray-700 dark:text-gray-300">A sample’s conformity—the average cosine similarity to all others—can be estimated by its cosine similarity to the modality mean.</p>
+      </div>
+      <div class="glass rounded-2xl p-6 shadow">
+        <h3 class="font-semibold text-lg">Narrow‑cone effect</h3>
+        <p class="mt-2 text-gray-700 dark:text-gray-300">The offset from the origin accounts for the narrow‑cone phenomenon observed with normalized CLIP features.</p>
+      </div>
+      <div class="glass rounded-2xl p-6 shadow">
+        <h3 class="font-semibold text-lg">Practical implications</h3>
+        <p class="mt-2 text-gray-700 dark:text-gray-300">Understanding this geometry motivates simple diagnostics and improved alignment methods in downstream tasks.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO & DEMO -->
+  <section id="demo" class="section py-12">
+    <div class="grid lg:grid-cols-2 gap-8 items-start">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-bold">Talk / Overview</h2>
+        <p class="mt-2 text-gray-700 dark:text-gray-300">Short walkthrough of the paper and intuition.</p>
+        <div class="mt-4 aspect-video w-full overflow-hidden rounded-2xl shadow ring-1 ring-black/5">
+          <iframe width="100%" height="100%" src="https://www.youtube.com/embed/4nJCuGGfirw" title="Double‑Ellipsoid Geometry of CLIP" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div id="code">
+        <h2 class="text-2xl sm:text-3xl font-bold">Try it in Colab</h2>
+        <p class="mt-2 text-gray-700 dark:text-gray-300">Run our quick demo on your browser, no setup required.</p>
+        <a class="mt-4 inline-flex items-center gap-3 rounded-2xl px-5 py-3 bg-emerald-600 text-white shadow hover:shadow-md" href="https://colab.research.google.com/gist/yossilevii100/aa3ca61e69ff5e1c0cd9cd6ddebd612e/untitled3.ipynb" target="_blank" rel="noopener">
+          <span class="text-lg">Open Colab Notebook</span>
+        </a>
+        <div class="mt-6 glass rounded-2xl p-5">
+          <h3 class="font-semibold">Local quickstart</h3>
+          <pre class="mono mt-2 text-sm whitespace-pre-wrap">git clone https://github.com/yossilevii100/double-ellipsoid-clip.git
+cd double-ellipsoid-clip
+pip install -r requirements.txt
+# open the notebook Double-Ellipsoid-Clip.ipynb</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIGURES / GALLERY (optional placeholders) -->
+  <section class="section py-12">
+    <h2 class="text-2xl sm:text-3xl font-bold">Teaser</h2>
+    <p class="mt-2 text-gray-700 dark:text-gray-300">A conceptual view of CLIP space and the modality gap.</p>
+    <img src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/teaser.png" alt="Teaser: CLIP space with two shifted ellipsoids" class="mt-4 w-full max-w-4xl rounded-2xl shadow ring-1 ring-black/5" />
+  </section>
+
+  <!-- BIBTEX -->
+  <section class="section py-12">
+    <h2 class="text-2xl sm:text-3xl font-bold">BibTeX</h2>
+    <p class="mt-2">If you find this work useful, please cite:</p>
+    <pre class="mono mt-4 p-4 rounded-2xl bg-gray-900 text-gray-50 overflow-x-auto text-sm">@article{levi2024double,
+  title={The Double-Ellipsoid Geometry of CLIP},
+  author={Levi, Meir Yossef and Gilboa, Guy},
+  journal={arXiv preprint arXiv:2411.14517},
+  year={2024}
+}
+</pre>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="mt-8 border-t border-gray-200/60 dark:border-gray-800/60">
+    <div class="section py-8 text-sm text-gray-600 dark:text-gray-400">
+      <div class="flex flex-wrap items-center gap-3">
+        <span>© <span id="year"></span> Meir Yossef Levi &middot; Technion</span>
+        <span>·</span>
+        <a class="underline-offset-2 hover:underline" href="https://github.com/yossilevii100/double-ellipsoid-clip" target="_blank" rel="noopener">Code</a>
+        <span>·</span>
+        <a class="underline-offset-2 hover:underline" href="https://arxiv.org/abs/2411.14517" target="_blank" rel="noopener">Paper</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Dark mode toggle (persists to localStorage)
+    const storageKey = 'double-ellipsoid-theme';
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const saved = localStorage.getItem(storageKey);
+    if ((saved === 'dark') || (!saved && prefersDark)) document.documentElement.classList.add('dark');
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem(storageKey, document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    });
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
