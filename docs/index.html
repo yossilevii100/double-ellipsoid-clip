@@ -17,23 +17,23 @@
   <meta property="og:description" content="ICML 2025 paper on CLIP latent space geometry, conformity, and modality gap.">
 
   <style>
-    body { font-family: 'Roboto', sans-serif; background: #f5f5f5; color: #222; }
+    body { font-family: 'Roboto', sans-serif; background: #fafafa; color: #222; }
     h1, h2, h3 { font-family: 'Poppins', sans-serif; }
     .hero { text-align: center; padding: 80px 20px; background: linear-gradient(135deg, #a259ff, #00d4ff); border-radius: 20px; margin: 20px; color: #fff; }
-    .hero h1 { font-size: 3rem; font-weight: 800; text-shadow: 2px 2px 6px rgba(0,0,0,0.2); }
+    .hero h1 { font-size: 3rem; font-weight: 800; text-shadow: 2px 2px 6px rgba(0,0,0,0.15); }
     .hero h4 { font-size: 1.5rem; margin-top: 10px; }
     .hero p { font-size: 1.2rem; }
     .hero .btn-custom { margin: 5px; background: #fff; color: #222; border: none; font-weight: 600; transition: 0.3s; }
     .hero .btn-custom:hover { background: #e0e0e0; transform: translateY(-2px); }
     .section { padding: 60px 20px; max-width: 1000px; margin: auto; }
-    .card-insight { background: #fff; border-radius: 20px; padding: 30px; margin: 20px 0; box-shadow: 0 0 20px rgba(162,89,255,0.2); }
+    .card-insight { background: #fff; border-radius: 20px; padding: 30px; margin: 20px 0; box-shadow: 0 0 20px rgba(162,89,255,0.15); }
     .card-insight h3 { color: #a259ff; }
-    .teaser { width: 100%; max-width: 650px; border-radius: 20px; box-shadow: 0 0 30px rgba(162,89,255,0.3); margin: 40px 0; transition: transform 0.3s; }
+    .teaser { width: 100%; max-width: 650px; border-radius: 20px; box-shadow: 0 0 30px rgba(162,89,255,0.15); margin: 40px 0; transition: transform 0.3s; }
     .teaser:hover { transform: scale(1.03); }
     pre { background: #eaeaea; padding: 20px; border-radius: 15px; overflow-x: auto; color: #222; }
     footer { text-align: center; padding: 50px 20px; font-size: 0.95rem; color: #555; }
     .icon { margin-right: 8px; }
-    iframe { border-radius: 20px; max-width: 100%; box-shadow: 0 0 30px rgba(162,89,255,0.3); margin-top: 20px; }
+    iframe { border-radius: 20px; max-width: 100%; box-shadow: 0 0 30px rgba(162,89,255,0.15); margin-top: 20px; }
   </style>
 </head>
 <body>
@@ -66,7 +66,7 @@
     <h2>Key Insights</h2>
     <div class="card-insight">
       <h3>Double-Ellipsoid Geometry</h3>
-      <p>Image and text features occupy distinct, shifted ellipsoid shells in the raw CLIP space; their separability explains the <em>modality gap and the offset from the origin accounts for the narrow-cone phenomenon</em>.</p>
+      <p>Image and text features occupy distinct, shifted ellipsoid shells in the raw CLIP space; their separability explains the <em>modality gap</em>.</p>
     </div>
     <div class="card-insight">
       <h3>Conformity ≈ Mean-Similarity</h3>
