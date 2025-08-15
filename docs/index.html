@@ -69,13 +69,10 @@
       text-decoration: none;
       color: inherit;
       transition: transform 0.3s;
+      position: relative;
     }
     .authors-container .author a:hover {
       transform: scale(1.1);
-    }
-    .authors-container .author a div {
-      margin-top: 5px;
-      font-weight: 500;
     }
     .authors-container .author img {
       width: 70px;
@@ -83,6 +80,28 @@
       border-radius: 50%;
       object-fit: cover;
       display: block;
+      margin-bottom: 5px;
+      transition: transform 0.3s;
+    }
+    .authors-container .author a:hover img {
+      transform: scale(1.15);
+    }
+    .authors-container .author a div {
+      font-weight: 500;
+      position: relative;
+    }
+    .authors-container .author a div::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #a259ff;
+      transition: width 0.3s ease-in-out;
+    }
+    .authors-container .author a:hover div::after {
+      width: 100%;
     }
 
     /* Aligned button row */
