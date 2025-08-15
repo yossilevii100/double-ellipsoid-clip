@@ -59,63 +59,52 @@
     h2 { font-size: 2rem; color:#4b0082; margin-bottom:20px; text-align:center; }
     p, li { font-size:1.1rem; line-height:1.6; color:#333; }
 
-    /* Header portraits (home section) */
-    .authors-container { display: flex; justify-content: center; gap: 40px; margin-top: 15px; flex-wrap: wrap; align-items: center; }
-    .author, .institution { display: flex; flex-direction: column; align-items: center; transition: transform 0.3s; }
-    .author:hover, .institution:hover { transform: scale(1.05); }
-    .author img, .institution img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; margin-bottom: 5px; cursor: pointer; }
-    .author a, .institution a { text-decoration: none; color: #4b0082; font-weight:600; transition: 0.3s; }
-    .author a:hover, .institution a:hover { color: #a259ff; }
-    .vertical-divider { width: 2px; background: #a259ff; height: 80px; margin: 0 20px; border-radius:1px; }
+    /* Header portraits */
+    .authors-container { display: flex; justify-content: center; gap: 40px; margin-top: 15px; flex-wrap: wrap; align-items:center; }
+    .author { display: flex; flex-direction: column; align-items: center; transition: transform 0.3s; }
+    .author a { margin-top:5px; }
+    .author img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; margin-bottom: 5px; transition: transform 0.3s; cursor:pointer; }
+    .author:hover img { transform: scale(1.1); }
 
-    /* Aligned button row (home) */
+    .vertical-line { border-left: 2px solid #a259ff; height: 70px; margin:0 40px; align-self:center; }
+
+    /* Aligned button row */
     .btn-row { display:flex; justify-content:center; align-items:stretch; flex-wrap:wrap; gap:10px; margin-top:15px; }
     .btn-custom { 
       display:flex; align-items:center; gap:8px;
-      padding:8px 16px; background:#a259ff; color:#fff; border:none; border-radius:8px;
+      padding:6px 16px; background:#a259ff; color:#fff; border:none; border-radius:8px;
       font-weight:600; transition:0.3s; cursor:pointer; text-decoration:none;
-      height:40px; line-height:1; 
+      height:36px; line-height:1; 
     }
     .btn-custom:hover { background:#6f2da8; transform: translateY(-2px); }
-    .btn-custom img { height:20px; width:auto; display:block; }
-    .btn-custom i { font-size:20px; line-height:1; display:block; }
-    .btn-custom::after { display:none; }
+    .btn-custom img { height:18px; width:auto; display:block; }
+    .btn-custom i { font-size:18px; line-height:1; display:block; }
+    .btn-custom::after { display:none; } /* disable underline animation inside buttons */
 
-    /* Abstract + Teaser side by side */
+    /* Abstract + Teaser split */
     .abstract-container {
       display: flex;
       gap: 20px;
-      align-items: flex-start;
+      align-items: stretch;
       justify-content: center;
       flex-wrap: wrap;
     }
     .abstract-text, .abstract-teaser-wrapper {
       flex: 1 1 45%;
       min-width: 300px;
+      display: flex;
+      flex-direction: column;
     }
-    .abstract-text { display: flex; flex-direction: column; justify-content: flex-start; }
-    .abstract-teaser-wrapper { display: flex; align-items: flex-start; justify-content: center; }
-    .abstract-teaser {
+    .abstract-teaser-wrapper img {
+      object-fit: contain;
       width: 100%;
-      height: auto;
-      max-width: 100%;
-      border-radius: 15px;
-      box-shadow: 0 10px 20px rgba(162,89,255,0.2);
       cursor: pointer;
-      transition: transform 0.3s;
+      border-radius:15px;
     }
-    .abstract-teaser:hover { transform: scale(1.05); }
 
-    /* Modal for image fullscreen */
-    .modal {
-      display:none; position:fixed; z-index:2000;
-      padding-top:60px; left:0; top:0; width:100%; height:100%;
-      overflow:auto; background-color: rgba(0,0,0,0.9);
+    @media (max-width: 900px) {
+      .abstract-text, .abstract-teaser-wrapper { flex: 1 1 100%; }
     }
-    .modal-content {
-      margin:auto; display:block; max-width:90%; max-height:90%;
-    }
-    .modal-close { position:absolute; top:20px; right:35px; color:#fff; font-size:40px; font-weight:bold; cursor:pointer; }
 
     /* Grid for insights */
     .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
@@ -130,11 +119,13 @@
 
     footer { text-align:center; padding:50px 20px; font-size:0.95rem; color:#555; }
 
-    @media (max-width: 900px) {
-      .abstract-text, .abstract-teaser-wrapper { flex: 1 1 100%; }
-      .authors-container { flex-direction: column; }
-      .vertical-divider { display:none; }
-    }
+    /* Modal image fullscreen */
+    .modal { display:none; position:fixed; z-index:10000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color: rgba(0,0,0,0.9); }
+    .modal-content { margin:auto; display:block; width:80%; max-width:1200px; height:auto; max-height:90%; margin-top:5%; }
+    .modal-content, #caption { animation-name: zoom; animation-duration:0.6s; }
+    @keyframes zoom { from {transform:scale(0)} to {transform:scale(1)} }
+    .close { position:absolute; top:20px; right:35px; color:#fff; font-size:40px; font-weight:bold; transition:0.3s; cursor:pointer; }
+    .close:hover { color:#bbb; }
   </style>
 </head>
 <body>
@@ -156,22 +147,28 @@
       <h1>The Double-Ellipsoid Geometry of CLIP</h1>
       <h2>ICML 2025</h2>
 
-      <!-- Author portraits with institution -->
+      <!-- Author portraits -->
       <div class="authors-container">
-        <div class="author" onclick="window.open('https://yossilevii100.github.io','_blank')">
-          <img src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/yossi.jfif" alt="Meir Yossef Levi">
-          <a href="https://yossilevii100.github.io" target="_blank">Meir Yossef Levi</a>
+        <div class="author">
+          <a href="https://yossilevii100.github.io">
+            <img src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/yossi.jfif" alt="Meir Yossef Levi">
+          </a>
+          <a href="https://yossilevii100.github.io">Meir Yossef Levi</a>
         </div>
-        <div class="author" onclick="window.open('https://guygilboa.net.technion.ac.il/','_blank')">
-          <img src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/guy.png" alt="Guy Gilboa">
-          <a href="https://guygilboa.net.technion.ac.il/" target="_blank">Guy Gilboa</a>
+        <div class="author">
+          <a href="https://guygilboa.net.technion.ac.il/">
+            <img src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/guy.png" alt="Guy Gilboa">
+          </a>
+          <a href="https://guygilboa.net.technion.ac.il/">Guy Gilboa</a>
         </div>
 
-        <div class="vertical-divider"></div>
+        <div class="vertical-line"></div>
 
-        <div class="institution" onclick="window.open('https://www.technion.ac.il/en/','_blank')">
-          <img src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/technion.png" alt="Technion">
-          <a href="https://www.technion.ac.il/en/" target="_blank">Technion</a>
+        <div class="author">
+          <a href="https://www.technion.ac.il/en/">
+            <img src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/technion.png" alt="Technion" style="background:black;">
+          </a>
+          <a href="https://www.technion.ac.il/en/">Technion</a>
         </div>
       </div>
 
@@ -192,22 +189,24 @@
 
   <!-- Abstract + Teaser Section -->
   <section id="abstract">
-    <div class="section-content abstract-container">
-      <div class="abstract-text">
-        <h2>Abstract</h2>
-        <p>
-          Contrastive Language–Image Pre-Training (CLIP) is instrumental across many domains, yet its embedding geometry is not fully understood. We examine the <strong>raw (pre-normalized)</strong> features and show that image and text reside on <strong>linearly separable ellipsoid shells</strong>, both <strong>shifted away from the origin</strong>. We explain the benefits of this structure and introduce a notion of <em>conformity</em>, which closely matches cosine similarity to the modality mean. We further connect this geometry to the <em>modality gap</em> and the <em>narrow-cone</em> effect.
-        </p>
-      </div>
-      <div class="abstract-teaser-wrapper">
-        <img id="abstract-teaser" class="abstract-teaser" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/clip_poster.png" alt="Abstract Teaser">
+    <div class="section-content">
+      <h2 style="text-align:center; margin-bottom:30px;">Abstract</h2>
+      <div class="abstract-container">
+        <div class="abstract-text">
+          <p>
+            Contrastive Language–Image Pre-Training (CLIP) is instrumental across many domains, yet its embedding geometry is not fully understood. We examine the <strong>raw (pre-normalized)</strong> features and show that image and text reside on <strong>linearly separable ellipsoid shells</strong>, both <strong>shifted away from the origin</strong>. We explain the benefits of this structure and introduce a notion of <em>conformity</em>, which closely matches cosine similarity to the modality mean. We further connect this geometry to the <em>modality gap</em> and the <em>narrow-cone</em> effect.
+          </p>
+        </div>
+        <div class="abstract-teaser-wrapper">
+          <img id="abstract-teaser" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/clip_poster.png" alt="Abstract Teaser">
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Modal for abstract image -->
+  <!-- Modal for image fullscreen -->
   <div id="modal" class="modal">
-    <span class="modal-close">&times;</span>
+    <span class="close">&times;</span>
     <img class="modal-content" id="modal-img">
   </div>
 
@@ -276,42 +275,41 @@ pip install -r requirements.txt
     <div class="section-content">
       <h2>Talk in Vision Lab, Caltech (Perona's Lab)</h2>
       <p>Watch the full one-hour talk:</p>
-      <iframe src="https://drive.google.com/file/d/1gA0ZfN9eLwCw-5x_7oOykjLkl0J7K3kG/preview"></iframe>
+      <iframe src="https://drive.google.com/file/d/13G6lymCSy6RgKj4VmaGgePG2L3qkqWIB/preview" title="Caltech Talk" frameborder="0" allowfullscreen></iframe>
     </div>
   </section>
 
-  <!-- Bibtex Section -->
+  <!-- BibTeX Section -->
   <section id="bibtex">
     <div class="section-content">
       <h2>BibTeX</h2>
-      <pre>
-@inproceedings{levi2025double,
+      <pre id="bibtex-text">@inproceedings{levi2025double,
   title={The Double-Ellipsoid Geometry of CLIP},
   author={Levi, Meir Yossef and Gilboa, Guy},
-  booktitle={ICML},
+  booktitle={International Conference on Machine Learning},
   year={2025}
-}
-      </pre>
+}</pre>
     </div>
   </section>
 
   <footer>
-    © 2025 Meir Yossef Levi & Guy Gilboa | Technion
+    &copy; 2025 Meir Yossef Levi &amp; Guy Gilboa
   </footer>
 
+  <!-- Modal JS -->
   <script>
-    // Modal script for abstract teaser
-    const modal = document.getElementById("modal");
-    const modalImg = document.getElementById("modal-img");
-    const teaser = document.getElementById("abstract-teaser");
-    const closeModal = document.getElementsByClassName("modal-close")[0];
+    var modal = document.getElementById("modal");
+    var img = document.getElementById("abstract-teaser");
+    var modalImg = document.getElementById("modal-img");
+    var span = document.getElementsByClassName("close")[0];
 
-    teaser.onclick = function(){
+    img.onclick = function(){
       modal.style.display = "block";
       modalImg.src = this.src;
     }
-    closeModal.onclick = function(){ modal.style.display = "none"; }
-    modal.onclick = function(e){ if(e.target==modal){ modal.style.display="none"; } }
+
+    span.onclick = function() { modal.style.display = "none"; }
+    modal.onclick = function(event){ if(event.target === modal) modal.style.display="none"; }
   </script>
 
 </body>
