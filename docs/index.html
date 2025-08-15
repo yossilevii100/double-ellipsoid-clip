@@ -64,25 +64,29 @@
     .author { display: flex; flex-direction: column; align-items: center; }
     .author img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; margin-bottom: 5px; }
 
-    /* Aligned button row */
-    .btn-row { display:flex; justify-content:center; align-items:stretch; flex-wrap:wrap; gap:10px; margin-top:15px; }
+    /* Aligned, smaller button row */
+    .btn-row { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:10px; margin-top:15px; }
     .btn-custom { 
-      display:flex; align-items:center; gap:8px;
-      padding:10px 20px; background:#a259ff; color:#fff; border:none; border-radius:8px;
-      font-weight:600; transition:0.3s; cursor:pointer; text-decoration:none;
-      height:48px; line-height:1; 
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 14px; background:#a259ff; color:#fff; border:none; border-radius:8px;
+      font-weight:600; font-size:0.95rem; transition:0.3s; cursor:pointer; text-decoration:none; line-height:1;
     }
     .btn-custom:hover { background:#6f2da8; transform: translateY(-2px); }
-    .btn-custom img { height:20px; width:auto; display:block; }
-    .btn-custom i { font-size:20px; line-height:1; display:block; }
+    .btn-custom img { height:18px; width:auto; display:block; }
+    .btn-custom i { font-size:18px; line-height:1; display:block; }
     .btn-custom::after { display:none; } /* disable underline animation inside buttons */
 
-    /* Abstract + Teaser split 50/50 */
-    .abstract-container { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; justify-content: center; }
-    .abstract-text { flex: 1 1 50%; min-width:300px; }
-    .abstract-teaser { flex: 1 1 50%; width:100%; height:auto; border-radius:15px; box-shadow:0 10px 20px rgba(162,89,255,0.2); }
+    /* Abstract + Teaser: equal split, stay side-by-side */
+    .abstract-container { 
+      display: flex; gap: 24px; align-items: flex-start; justify-content: center; 
+    }
+    .abstract-text, .abstract-teaser { flex: 1 1 0; min-width:0; }
+    .abstract-teaser { border-radius:15px; box-shadow:0 10px 20px rgba(162,89,255,0.2); max-height: 100%; }
+    .abstract-teaser { overflow: hidden; }
+    .abstract-teaser-img { width:100%; height:auto; display:block; }
+
     @media (max-width: 900px) {
-      .abstract-text, .abstract-teaser { flex: 1 1 100%; }
+      .abstract-container { flex-direction: column; }
     }
 
     /* Grid for insights */
@@ -121,11 +125,11 @@
       <!-- Author portraits -->
       <div class="authors-container">
         <div class="author">
-          <img src="../misc/yossi.jfif" alt="Meir Yossef Levi">
+          <img src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/yossi.jfif" alt="Meir Yossef Levi">
           <a href="https://yossilevii100.github.io">Meir Yossef Levi</a>
         </div>
         <div class="author">
-          <img src="../misc/guy.png" alt="Guy Gilboa">
+          <img src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/guy.png" alt="Guy Gilboa">
           <a href="https://guygilboa.net.technion.ac.il/">Guy Gilboa</a>
         </div>
         <div class="author">
@@ -133,7 +137,7 @@
         </div>
       </div>
 
-      <!-- Aligned buttons row -->
+      <!-- Aligned, smaller buttons row -->
       <div class="btn-row">
         <a class="btn-custom" href="https://arxiv.org/abs/2411.14517" target="_blank" rel="noopener">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/ArXiv_logo_2022.svg/512px-ArXiv_logo_2022.svg.png" alt="ArXiv"> ArXiv
@@ -157,7 +161,9 @@
         <h2>Abstract</h2>
         <p>Contrastive Language–Image Pre-Training (CLIP) is instrumental across many domains, yet its embedding geometry is not fully understood. We examine the <strong>raw (pre-normalized)</strong> features and show that image and text reside on <strong>linearly separable ellipsoid shells</strong>, both <strong>shifted away from the origin</strong>. We explain the benefits of this structure and introduce a notion of <em>conformity</em>, which closely matches cosine similarity to the modality mean. We further connect this geometry to the <em>modality gap</em> and the <em>narrow-cone</em> effect.</p>
       </div>
-      <img class="abstract-teaser" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/clip_poster.png" alt="Abstract Teaser">
+      <div class="abstract-teaser">
+        <img class="abstract-teaser-img" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/clip_poster.png" alt="Abstract Teaser">
+      </div>
     </div>
   </section>
 
