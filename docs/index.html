@@ -13,13 +13,11 @@
     body { font-family: 'Roboto', sans-serif; background: #fafafa; color: #222; margin:0; padding-top:70px; overflow-x:hidden; }
     h1, h2, h3 { font-family: 'Poppins', sans-serif; }
 
-    /* Global links */
     a { color: #4b0082; text-decoration: none; position: relative; transition: 0.3s; }
     a:hover { color: #a259ff; }
     a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 0; background-color: #a259ff; transition: width 0.3s ease-in-out; }
     a:hover::after { width: 100%; }
 
-    /* Top Navigation */
     .topnav {
       position: fixed;
       top: 0;
@@ -41,7 +39,6 @@
     }
     .topnav a:hover { background: rgba(255,255,255,0.2); border-radius:5px; }
 
-    /* Section styling */
     section { 
       width: 100%;
       padding: 60px 5%;
@@ -59,28 +56,23 @@
     h2 { font-size: 2rem; color:#4b0082; margin-bottom:20px; text-align:center; }
     p, li { font-size:1.1rem; line-height:1.6; color:#333; }
 
-    /* Header portraits */
     .authors-container { display: flex; justify-content: center; gap: 40px; margin-top: 15px; flex-wrap: wrap; }
     .author { display: flex; flex-direction: column; align-items: center; }
     .author img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; margin-bottom: 5px; }
 
-    /* Two-column layout for Abstract + Teaser */
     .abstract-container { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; justify-content: center; }
     .abstract-text { flex: 1 1 400px; min-width:300px; }
     .abstract-teaser { flex: 0 0 300px; max-width:300px; border-radius:15px; box-shadow:0 10px 20px rgba(162,89,255,0.2); }
 
-    /* Grid for insights */
     .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
     .card-insight { background: linear-gradient(145deg, #fff, #f0f0f5); border-radius: 20px; padding: 30px; box-shadow: 0 10px 20px rgba(162,89,255,0.2); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
     .card-insight:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(162,89,255,0.3); }
     .card-insight h3 { color: #a259ff; }
 
-    /* Buttons */
     .btn-custom { display: inline-flex; align-items: center; margin:5px; padding:10px 20px; background:#a259ff; color:#fff; border:none; border-radius:8px; font-weight:600; transition:0.3s; cursor:pointer; text-decoration:none; }
     .btn-custom:hover { background:#6f2da8; transform: translateY(-2px); }
     .btn-custom img { margin-right:8px; height:20px; }
 
-    /* Media and code */
     .poster { width:100%; max-width:1000px; border-radius:20px; box-shadow:0 0 30px rgba(162,89,255,0.15); margin:20px 0; display:block; margin-left:auto; margin-right:auto; }
     iframe { border-radius:20px; max-width:100%; width:100%; height:450px; box-shadow:0 0 30px rgba(162,89,255,0.15); margin-top:20px; display:block; margin-left:auto; margin-right:auto; }
     pre { background:#eaeaea; padding:20px; border-radius:15px; overflow-x:auto; color:#222; }
@@ -90,7 +82,6 @@
 </head>
 <body>
 
-  <!-- Top Navigation -->
   <div class="topnav">
     <a href="#hero">Home</a>
     <a href="#abstract">Abstract</a>
@@ -101,20 +92,18 @@
     <a href="#bibtex">BibTeX</a>
   </div>
 
-  <!-- Hero Section -->
   <section id="hero">
     <div class="section-content">
       <h1>The Double-Ellipsoid Geometry of CLIP</h1>
       <h2>ICML 2025</h2>
 
-      <!-- Author portraits -->
       <div class="authors-container">
         <div class="author">
-          <img src="misc/yossi.jfif" alt="Meir Yossef Levi">
+          <img src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/yossi.jfif" alt="Meir Yossef Levi">
           <a href="https://yossilevii100.github.io">Meir Yossef Levi</a>
         </div>
         <div class="author">
-          <img src="misc/guy.png" alt="Guy Gilboa">
+          <img src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/guy.png" alt="Guy Gilboa">
           <a href="https://guygilboa.net.technion.ac.il/">Guy Gilboa</a>
         </div>
         <div class="author">
@@ -122,7 +111,6 @@
         </div>
       </div>
 
-      <!-- Fancy buttons row -->
       <div style="text-align:center; margin-top:15px;">
         <a class="btn-custom" href="https://arxiv.org/abs/2411.14517" target="_blank">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/ArXiv_logo_2022.svg/512px-ArXiv_logo_2022.svg.png" alt="Arxiv"> Arxiv
@@ -139,18 +127,16 @@
     </div>
   </section>
 
-  <!-- Abstract + Teaser Section -->
   <section id="abstract">
     <div class="section-content abstract-container">
       <div class="abstract-text">
         <h2>Abstract</h2>
-        <p>Contrastive Language–Image Pre‑Training (CLIP) is instrumental across many domains, yet its embedding geometry is not fully understood. We examine the <strong>raw (pre‑normalized)</strong> features and show that image and text reside on <strong>linearly separable ellipsoid shells</strong>, both <strong>shifted away from the origin</strong>. We explain the benefits of this structure and introduce a notion of <em>conformity</em>, which closely matches cosine similarity to the modality mean. We further connect this geometry to the <em>modality gap</em> and the <em>narrow‑cone</em> effect.</p>
+        <p>Contrastive Language–Image Pre-Training (CLIP) is instrumental across many domains, yet its embedding geometry is not fully understood. We examine the <strong>raw (pre-normalized)</strong> features and show that image and text reside on <strong>linearly separable ellipsoid shells</strong>, both <strong>shifted away from the origin</strong>. We explain the benefits of this structure and introduce a notion of <em>conformity</em>, which closely matches cosine similarity to the modality mean. We further connect this geometry to the <em>modality gap</em> and the <em>narrow-cone</em> effect.</p>
       </div>
       <img class="abstract-teaser" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/clip_poster.png" alt="Abstract Teaser">
     </div>
   </section>
 
-  <!-- Key Insights Section -->
   <section id="insights">
     <div class="section-content">
       <h2>Key Insights</h2>
@@ -175,7 +161,6 @@
     </div>
   </section>
 
-  <!-- Colab Demo Section -->
   <section id="colab">
     <div class="section-content">
       <h2>Try it in Colab</h2>
@@ -190,7 +175,6 @@ pip install -r requirements.txt
     </div>
   </section>
 
-  <!-- Follow-up Paper Section -->
   <section id="followup">
     <div class="section-content">
       <h2>Follow-up Work</h2>
@@ -210,7 +194,6 @@ pip install -r requirements.txt
     </div>
   </section>
 
-  <!-- Caltech Talk Section -->
   <section id="caltech">
     <div class="section-content">
       <h2>Caltech Talk</h2>
@@ -219,7 +202,6 @@ pip install -r requirements.txt
     </div>
   </section>
 
-  <!-- BibTeX Section -->
   <section id="bibtex">
     <div class="section-content">
       <h2>BibTeX</h2>
