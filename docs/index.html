@@ -12,56 +12,114 @@
   <style>
     body { font-family: 'Roboto', sans-serif; background: #fafafa; color: #222; margin:0; padding-top:70px; overflow-x:hidden; }
     h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+
+    /* Global links */
     a { color: #4b0082; text-decoration: none; position: relative; transition: 0.3s; }
     a:hover { color: #a259ff; }
     a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 0; background-color: #a259ff; transition: width 0.3s ease-in-out; }
     a:hover::after { width: 100%; }
 
-    .topnav { position: fixed; top: 0; width: 100%; background: #a259ff; display: flex; justify-content: center; z-index: 1000; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 10px 0; }
-    .topnav a { color: white; padding: 10px 20px; text-align: center; font-weight:600; font-size:1rem; transition: 0.3s; }
+    /* Top Navigation */
+    .topnav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #a259ff;
+      display: flex;
+      justify-content: center;
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 10px 0;
+    }
+    .topnav a {
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      font-weight:600;
+      font-size:1rem;
+      transition: 0.3s;
+    }
     .topnav a:hover { background: rgba(255,255,255,0.2); border-radius:5px; }
 
-    section { width: 100%; padding: 60px 5%; margin: 20px 0; border-radius: 20px; box-shadow: 0 10px 20px rgba(162,89,255,0.15); transition: transform 0.3s, box-shadow 0.3s; background: linear-gradient(145deg, #ffffff, #f2f0ff); }
+    /* Section styling */
+    section { 
+      width: 100%;
+      padding: 60px 5%;
+      margin: 20px 0;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(162,89,255,0.15);
+      transition: transform 0.3s, box-shadow 0.3s; 
+      background: linear-gradient(145deg, #ffffff, #f2f0ff);
+    }
     section:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(162,89,255,0.2); }
+
     .section-content { max-width:1000px; margin:auto; }
 
     h1 { font-size: 3rem; font-weight: 800; text-align:center; color:#a259ff; }
     h2 { font-size: 2rem; color:#4b0082; margin-bottom:20px; text-align:center; }
     p, li { font-size:1.1rem; line-height:1.6; color:#333; }
 
+    /* Header portraits */
     .authors-container { display: flex; justify-content: center; gap: 40px; margin-top: 15px; flex-wrap: wrap; align-items:center; }
     .author { display: flex; flex-direction: column; align-items: center; transition: transform 0.3s; }
     .author a { margin-top:5px; }
     .author img { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; margin-bottom: 5px; transition: transform 0.3s; cursor:pointer; }
     .author:hover img { transform: scale(1.1); }
+
     .vertical-line { border-left: 2px solid #a259ff; height: 70px; margin:0 40px; align-self:center; }
 
+    /* Aligned button row */
     .btn-row { display:flex; justify-content:center; align-items:stretch; flex-wrap:wrap; gap:10px; margin-top:15px; }
-    .btn-custom { display:flex; align-items:center; gap:8px; padding:4px 14px; background:#a259ff; color:#fff; border:none; border-radius:8px; font-weight:600; transition:0.3s; cursor:pointer; text-decoration:none; height:30px; line-height:1; }
+    .btn-custom { 
+      display:flex; align-items:center; gap:8px;
+      padding:4px 14px; background:#a259ff; color:#fff; border:none; border-radius:8px;
+      font-weight:600; transition:0.3s; cursor:pointer; text-decoration:none;
+      height:30px; line-height:1; 
+    }
     .btn-custom:hover { background:#6f2da8; transform: translateY(-2px); }
     .btn-custom img { height:18px; width:auto; display:block; }
     .btn-custom i { font-size:18px; line-height:1; display:block; }
-    .btn-custom::after { display:none; }
+    .btn-custom::after { display:none; } /* disable underline animation inside buttons */
 
-    .abstract-container { display: flex; gap: 20px; align-items: stretch; justify-content: center; flex-wrap: wrap; }
-    .abstract-text, .abstract-teaser-wrapper { flex: 1 1 45%; min-width: 300px; display: flex; flex-direction: column; }
-    .abstract-teaser-wrapper img { object-fit: contain; width: 100%; cursor: pointer; border-radius:15px; }
-    @media (max-width: 900px) { .abstract-text, .abstract-teaser-wrapper { flex: 1 1 100%; } }
+    /* Abstract + Teaser split */
+    .abstract-container {
+      display: flex;
+      gap: 20px;
+      align-items: stretch;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .abstract-text, .abstract-teaser-wrapper {
+      flex: 1 1 45%;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+    }
+    .abstract-teaser-wrapper img {
+      object-fit: contain;
+      width: 100%;
+      cursor: pointer;
+      border-radius:15px;
+    }
 
-    .insights-container { display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start; justify-content:center; }
-    .insights-video { flex:1 1 40%; min-width:300px; max-width:400px; }
-    .insights-video video { width:100%; border-radius:20px; box-shadow:0 10px 20px rgba(162,89,255,0.2); }
-    .insights-grid { flex:1 1 55%; display:grid; grid-template-columns:1fr; gap:20px; }
-    .card-insight { background: linear-gradient(145deg, #fff, #f0f0f5); border-radius: 20px; padding: 20px; box-shadow: 0 10px 20px rgba(162,89,255,0.2); cursor:pointer; transition: transform 0.3s, box-shadow 0.3s; }
-    .card-insight:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(162,89,255,0.3); }
-    .card-insight h3 { color:#a259ff; }
+    @media (max-width: 900px) {
+      .abstract-text, .abstract-teaser-wrapper { flex: 1 1 100%; }
+    }
 
+    /* Grid for insights */
+    .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .card-insight { background: linear-gradient(145deg, #fff, #f0f0f5); border-radius: 20px; padding: 30px; box-shadow: 0 10px 20px rgba(162,89,255,0.2); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
+    .card-insight:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(162,89,255,0.3); }
+    .card-insight h3 { color: #a259ff; }
+
+    /* Media and code */
     .poster { width:100%; max-width:1000px; border-radius:20px; box-shadow:0 0 30px rgba(162,89,255,0.15); margin:20px 0; display:block; margin-left:auto; margin-right:auto; }
     iframe { border-radius:20px; max-width:100%; width:100%; height:450px; box-shadow:0 0 30px rgba(162,89,255,0.15); margin-top:20px; display:block; margin-left:auto; margin-right:auto; }
     pre { background:#eaeaea; padding:20px; border-radius:15px; overflow-x:auto; color:#222; }
 
     footer { text-align:center; padding:50px 20px; font-size:0.95rem; color:#555; }
 
+    /* Modal image fullscreen */
     .modal { display:none; position:fixed; z-index:10000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color: rgba(0,0,0,0.9); }
     .modal-content { margin:auto; display:block; width:80%; max-width:1200px; height:auto; max-height:90%; margin-top:5%; }
     .modal-content, #caption { animation-name: zoom; animation-duration:0.6s; }
@@ -103,7 +161,9 @@
           </a>
           <a href="https://guygilboa.net.technion.ac.il/">Guy Gilboa</a>
         </div>
+
         <div class="vertical-line"></div>
+
         <div class="author">
           <a href="https://www.technion.ac.il/en/">
             <img src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/technion.png" alt="Technion" style="background:black;">
@@ -150,33 +210,26 @@
     <img class="modal-content" id="modal-img">
   </div>
 
-  <!-- Key Insights Section with video -->
+  <!-- Key Insights Section -->
   <section id="insights">
     <div class="section-content">
       <h2>Key Insights</h2>
-      <div class="insights-container">
-        <!-- Video on left -->
-        <div class="insights-video">
-          <video id="double-ellipsoid-video" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/double_ellipsoid.mp4" muted></video>
+      <div class="insights-grid">
+        <div class="card-insight">
+          <h3>Double-Ellipsoid Geometry</h3>
+          <p>Image and text features occupy distinct, shifted ellipsoid shells in the raw CLIP space; their separability explains the <em>modality gap</em> while their offset from the origin explains the <em>Narrow Cone Effect</em>.</p>
         </div>
-        <!-- Insights cards on right -->
-        <div class="insights-grid">
-          <div class="card-insight" data-video="double-ellipsoid-video">
-            <h3>Double-Ellipsoid Geometry</h3>
-            <p>Image and text features occupy distinct, shifted ellipsoid shells in the raw CLIP space; their separability explains the <em>modality gap</em> while their offset from the origin explains the <em>Narrow Cone Effect</em>.</p>
-          </div>
-          <div class="card-insight">
-            <h3>Conformity ≈ Mean-Similarity</h3>
-            <p>A sample's conformity—the average cosine similarity to all others—can be estimated by its cosine similarity to the modality mean.</p>
-          </div>
-          <div class="card-insight">
-            <h3>Optimal Convergence</h3>
-            <p>We found that in this position the alignment between the conformity distribution of text and images is optimal.</p>
-          </div>
-          <div class="card-insight">
-            <h3>Practical Implications</h3>
-            <p>Understanding this geometry motivates simple diagnostics and improved alignment methods in downstream tasks.</p>
-          </div>
+        <div class="card-insight">
+          <h3>Conformity ≈ Mean-Similarity</h3>
+          <p>A sample's conformity—the average cosine similarity to all others—can be estimated by its cosine similarity to the modality mean.</p>
+        </div>
+        <div class="card-insight">
+          <h3>Optimal Convergence</h3>
+          <p>We found that in this position the alignment between the conformity distribution of text and images is optimal.</p>
+        </div>
+        <div class="card-insight">
+          <h3>Practical Implications</h3>
+          <p>Understanding this geometry motivates simple diagnostics and improved alignment methods in downstream tasks.</p>
         </div>
       </div>
     </div>
@@ -243,31 +296,20 @@ pip install -r requirements.txt
     &copy; 2025 Meir Yossef Levi &amp; Guy Gilboa
   </footer>
 
-  <!-- Scripts -->
+  <!-- Modal JS -->
   <script>
-    // Abstract image fullscreen
     var modal = document.getElementById("modal");
     var img = document.getElementById("abstract-teaser");
     var modalImg = document.getElementById("modal-img");
     var span = document.getElementsByClassName("close")[0];
-    img.onclick = function(){ modal.style.display = "block"; modalImg.src = this.src; }
+
+    img.onclick = function(){
+      modal.style.display = "block";
+      modalImg.src = this.src;
+    }
+
     span.onclick = function() { modal.style.display = "none"; }
     modal.onclick = function(event){ if(event.target === modal) modal.style.display="none"; }
-
-    // Insights video hover play once
-    const cards = document.querySelectorAll('.card-insight[data-video]');
-    cards.forEach(card => {
-      const vidId = card.getAttribute('data-video');
-      const video = document.getElementById(vidId);
-      card.addEventListener('mouseenter', () => {
-        video.currentTime = 0;
-        video.play();
-      });
-      card.addEventListener('mouseleave', () => {
-        video.pause();
-        video.currentTime = 0;
-      });
-    });
   </script>
 
 </body>
