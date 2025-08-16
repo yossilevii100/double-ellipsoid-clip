@@ -407,14 +407,15 @@ pip install -r requirements.txt
 <section id="bibtex" aria-label="BibTeX">
   <div class="section-content">
     <h2>BibTeX</h2>
-    <div style="display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap;">
-      <pre id="bibtex-text">@inproceedings{levi2025double,
+    <div style="position: relative; display: flex; flex-direction: column; max-width:600px;">
+      <pre id="bibtex-text" style="margin:0; padding-bottom:40px;">@inproceedings{levi2025double,
   title={The Double-Ellipsoid Geometry of CLIP},
   author={Levi, Meir Yossef and Gilboa, Guy},
   booktitle={International Conference on Machine Learning},
   year={2025}
 }</pre>
-      <button class="btn-custom" id="copy-bibtex-btn">
+      <button class="btn-custom" id="copy-bibtex-btn"
+              style="position:absolute; bottom:0; right:0; margin:10px;">
         Copy BibTeX
       </button>
     </div>
