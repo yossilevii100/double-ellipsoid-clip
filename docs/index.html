@@ -102,7 +102,7 @@
 	/* Key Insight Card Styles */
 	.card-insight {
 	  display: flex;
-	  flex-direction: row;           /* left/right split */
+	  flex-direction: row;       /* left/right split */
 	  align-items: stretch;
 	  padding: 18px;
 	  border-radius: 18px;
@@ -111,8 +111,8 @@
 	  cursor: pointer;
 	  transition: transform 0.3s ease, box-shadow 0.3s ease;
 	  min-height: 180px;
-	  overflow: visible;            /* allow image to grow */
 	  gap: 20px;
+	  overflow: hidden;          /* keep image inside left */
 	}
 
 	.card-insight:hover {
@@ -120,18 +120,18 @@
 	  box-shadow: 0 22px 40px rgba(162,89,255,0.2);
 	}
 
-	/* Left side: header on top, image below */
+	/* Left: vertical split */
 	.card-insight .left {
+	  flex: 1;
 	  display: flex;
 	  flex-direction: column;
-	  flex: 1;                       /* take half of card */
-	  justify-content: space-between; /* top/bottom */
+	  justify-content: space-between; /* header top, image bottom */
 	  align-items: center;
-	  gap: 12px;
+	  overflow: hidden;              /* contain image */
 	  position: relative;
 	}
 
-	/* Header on top */
+	/* Header pinned to top */
 	.card-insight .left h3 {
 	  margin: 0;
 	  color: var(--accent);
@@ -139,34 +139,36 @@
 	  flex-shrink: 0;
 	}
 
-	/* Image container (bottom of left) */
+	/* Image pinned to bottom */
 	.card-insight .left .img-wrapper {
 	  display: flex;
 	  justify-content: center;
-	  align-items: flex-start;
+	  align-items: flex-end;        /* push image to bottom */
 	  width: 100%;
-	  position: relative;
+	  overflow: hidden;
 	  flex-shrink: 0;
 	}
 
+	/* Image itself */
 	.card-insight .left img {
-	  width: 120px;
+	  width: 100px;                  /* small initial size */
 	  height: auto;
 	  object-fit: contain;
 	  border-radius: 14px;
 	  transition: transform 0.35s ease, box-shadow 0.35s ease;
+	  transform-origin: bottom center;  /* grow upward */
 	  display: block;
-	  transform-origin: bottom; /* grow upwards */
 	}
 
+	/* Hover: image grows up to full height of left cell */
 	.card-insight:hover .left img {
-	  transform: scale(2);          /* grow upward on hover */
+	  transform: scale(2);           /* adjust scale as needed */
 	  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
 	}
 
-	/* Right side: description */
+	/* Right: description */
 	.card-insight .right {
-	  flex: 1;                        /* take half of card */
+	  flex: 1;
 	  display: flex;
 	  align-items: center;
 	  justify-content: flex-start;
