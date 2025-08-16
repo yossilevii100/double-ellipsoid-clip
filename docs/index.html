@@ -102,7 +102,7 @@
 	/* Key Insight Card Styles */
 .card-insight {
   display: flex;
-  flex-direction: row;
+  flex-direction: column; /* main card is now vertical */
   border-radius: 18px;
   background: linear-gradient(145deg, #fff, #f0f0f5);
   box-shadow: 0 8px 22px rgba(162, 89, 255, 0.12);
@@ -118,27 +118,27 @@
   box-shadow: 0 22px 40px rgba(162, 89, 255, 0.2);
 }
 
-/* Left side */
-.card-insight .left {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  margin-right: 20px;
+/* Upper part - header */
+.card-insight .upper {
+  flex: 0 0 auto; /* only takes content height */
 }
 
-/* Header (upper) */
-.card-insight .left .upper {
-  flex: 0 0 auto; /* header only takes its content height */
-}
-
-.card-insight .left .upper h3 {
+.card-insight .upper h3 {
   color: var(--accent);
   margin: 0 0 12px 0;
 }
 
-/* Image container (lower) */
-.card-insight .left .lower {
-  flex: 1; /* fill remaining left space */
+/* Bottom part - split left image / right description */
+.card-insight .bottom {
+  flex: 1; /* fill remaining space */
+  display: flex;
+  flex-direction: row; /* split horizontally */
+  gap: 20px;
+}
+
+/* Left image container */
+.card-insight .bottom .left {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -146,9 +146,8 @@
   position: relative;
 }
 
-/* Image itself */
-.card-insight .left .lower img {
-  height: 50%;   /* start smaller but centered */
+.card-insight .bottom .left img {
+  height: 50%;
   width: auto;
   object-fit: contain;
   border-radius: 14px;
@@ -156,20 +155,19 @@
   transform: scale(1);
 }
 
-/* Image grows on card hover */
-.card-insight:hover .left .lower img {
-  transform: scale(2); /* enlarge to fill left lower part */
+.card-insight:hover .bottom .left img {
+  transform: scale(2);
 }
 
-/* Right side text */
-.card-insight .right {
+/* Right description */
+.card-insight .bottom .right {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* align top with header */
+  justify-content: flex-start; /* align top */
 }
 
-.card-insight .right p {
+.card-insight .bottom .right p {
   font-size: 1rem;
   line-height: 1.5;
   margin: 0;
