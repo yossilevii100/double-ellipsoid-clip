@@ -87,8 +87,31 @@
     @media (max-width:900px) { .abstract-text, .abstract-teaser-wrapper { flex:1 1 100%; } }
 
     .insights-container { display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start; justify-content:center; margin-top:8px; }
-    .insights-grid { flex:1 1 80%; display:grid; grid-template-columns:1fr; gap:18px; }
-    .card-insight { background:linear-gradient(145deg,#fff,#f0f0f5); border-radius:16px; padding:18px; box-shadow:0 10px 20px rgba(162,89,255,0.12); cursor:default; transition:transform 0.18s, box-shadow 0.18s; }
+    .insights-grid {
+	  flex: 1 1 80%;
+	  display: grid;
+	  grid-template-columns: repeat(2, 1fr); /* 2 columns for 2x2 layout */
+	  gap: 18px;
+	}
+
+	@media (max-width: 700px) {
+	  .insights-grid {
+		grid-template-columns: 1fr; /* stack vertically on small screens */
+	  }
+	}
+    .card-insight {
+	  background: linear-gradient(145deg,#fff,#f0f0f5);
+	  border-radius: 16px;
+	  padding: 18px;
+	  box-shadow: 0 10px 20px rgba(162,89,255,0.12);
+	  cursor: default;
+	  transition: transform 0.18s, box-shadow 0.18s;
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: flex-start;
+	  min-height: 220px; /* ensures square-ish shape */
+	}
+ cursor:default; transition:transform 0.18s, box-shadow 0.18s; }
     .card-insight:hover { transform:translateY(-6px); box-shadow:0 18px 36px rgba(162,89,255,0.16); }
     .card-insight h3 { color:var(--accent); margin-bottom:8px; }
 
