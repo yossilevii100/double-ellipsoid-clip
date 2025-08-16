@@ -438,33 +438,50 @@ pip install -r requirements.txt
   </section>
 
   <!-- Follow-up Paper Section -->
-  <section id="followup" aria-label="Follow-up work">
-    <div class="section-content">
-      <h2>Follow-up Work</h2>
-      <img class="poster" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/whitened_poster.png" alt="Follow-up poster">
-      <p>Check out our follow-up ICML 2025 paper on analyzing CLIP in a probabilistic manner:</p>
-      <div class="btn-row" style="margin-top:8px;">
-        <a class="btn-custom" href="https://arxiv.org/abs/2505.06934" target="_blank" rel="noopener" aria-label="Open follow-up arXiv paper">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/ArXiv_logo_2022.svg/512px-ArXiv_logo_2022.svg.png" alt="ArXiv logo"> arXiv
-        </a>
-        <a class="btn-custom" href="https://icml.cc/virtual/2025/poster/45897" target="_blank" rel="noopener" aria-label="Open ICML poster">
-          <i class="fas fa-chalkboard-teacher" aria-hidden="true"></i> ICML Poster
-        </a>
-        <a class="btn-custom" href="https://github.com/rbetser/W_CLIP" target="_blank" rel="noopener" aria-label="Open W_CLIP GitHub">
-          <i class="fab fa-github" aria-hidden="true"></i> GitHub
-        </a>
+<section id="followup" aria-label="Follow-up work">
+  <div class="section-content">
+    <h2>Follow-up Work</h2>
+
+    <div class="followup-container" style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center; align-items:flex-start; margin-top:16px;">
+
+      <!-- Left: description + poster -->
+      <div class="followup-left" style="flex:1 1 45%; min-width:280px; display:flex; flex-direction:column; gap:12px;">
+        
+        <!-- Upper: description -->
+        <div class="followup-desc" style="flex:0 0 auto; background:var(--card-bg); padding:16px; border-radius:12px; box-shadow:0 8px 24px rgba(162,89,255,0.12);">
+          <p>
+            Our follow-up ICML 2025 paper analyzes CLIP in a probabilistic manner,
+            focusing on image and text likelihood estimation. It extends our previous
+            double-ellipsoid geometry insights to provide more robust probabilistic reasoning.
+          </p>
+        </div>
+
+        <!-- Bottom: poster image -->
+        <div class="followup-poster" style="flex:1; display:flex; justify-content:center; align-items:center;">
+          <img src="misc/whitened.png" 
+               alt="Whitened Poster" 
+               style="width:100%; max-width:420px; border-radius:12px; box-shadow:0 8px 28px rgba(162,89,255,0.12); display:block; margin:auto;">
+        </div>
+
       </div>
 
-      <div class="btn-row" style="margin-top:10px;">
-        <a class="btn-custom" href="https://colab.research.google.com/github/rbetser/W_CLIP/blob/main/calc_log_like_image_demo.ipynb" target="_blank" rel="noopener" aria-label="Open image likelihood demo">
-          <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Colab badge"> Image Likelihood
-        </a>
-        <a class="btn-custom" href="https://colab.research.google.com/github/rbetser/W_CLIP/blob/main/calc_log_like_text_demo.ipynb" target="_blank" rel="noopener" aria-label="Open text likelihood demo">
-          <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Colab badge"> Text Likelihood
-        </a>
+      <!-- Right: embedded YouTube video -->
+      <div class="followup-right" style="flex:1 1 45%; min-width:280px;">
+        <div style="position:relative; width:100%; padding-top:56.25%; border-radius:12px; overflow:hidden; box-shadow:0 8px 28px rgba(162,89,255,0.12);">
+          <iframe 
+            src="https://www.youtube.com/embed/3JpucozKQ5I" 
+            title="Follow-up ICML 2025 Presentation" 
+            frameborder="0" 
+            allowfullscreen 
+            style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;">
+          </iframe>
+        </div>
       </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
 
 <!-- BibTeX Section -->
 <section id="bibtex" aria-label="BibTeX">
