@@ -223,30 +223,9 @@
 	  pointer-events: none;
 	}
 
-	.play-button {
-	  pointer-events: auto;
-	  display: flex;
-	  align-items: center;
-	  justify-content: center;
-	  width: 50px;           /* slightly smaller */
-	  height: 50px;
-	  border-radius: 50%;
-	  background: rgba(0,0,0,0.5);
-	  color: white;
-	  font-size: 20px;
-	  border: 2px solid rgba(255,255,255,0.14);
-	  transition: transform 0.12s, background 0.12s;
-	}
-
-	.play-button:hover {
-	  transform: scale(1.06);
-	  background: rgba(0,0,0,0.6);
-	}
-
 	/* Responsive for small screens */
 	@media (max-width:600px) {
 	  .hero-video-inner { max-width: 90%; }
-	  .play-button { width: 45px; height: 45px; font-size: 18px; }
 	}
   </style>
 </head>
