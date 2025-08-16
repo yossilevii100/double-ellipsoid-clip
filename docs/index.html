@@ -104,12 +104,26 @@
 	  border-radius: 16px;
 	  padding: 18px;
 	  box-shadow: 0 10px 20px rgba(162,89,255,0.12);
-	  cursor: default;
-	  transition: transform 0.18s, box-shadow 0.18s;
+	  cursor: pointer; /* makes hover feel interactive */
+	  transition: transform 0.25s ease, box-shadow 0.25s ease;
 	  display: flex;
 	  flex-direction: column;
+	  align-items: center; /* center image/text nicely */
 	  justify-content: flex-start;
-	  min-height: 220px; /* ensures square-ish shape */
+	  min-height: 220px;
+	}
+	.card-insight:hover {
+	  transform: translateY(-6px) scale(1.02); /* subtle lift + scale */
+	  box-shadow: 0 20px 36px rgba(162,89,255,0.18);
+	}
+	.card-insight img {
+	  width: 60px;
+	  height: 60px;
+	  object-fit: contain;
+	  border-radius: 12px;
+	  margin: 8px auto 12px auto;
+	  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+	  display: block;
 	}
  cursor:default; transition:transform 0.18s, box-shadow 0.18s; }
     .card-insight:hover { transform:translateY(-6px); box-shadow:0 18px 36px rgba(162,89,255,0.16); }
