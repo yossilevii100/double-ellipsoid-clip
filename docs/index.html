@@ -81,89 +81,220 @@
     .btn-custom i { font-size:14px; }
     .btn-custom:hover { background:var(--accent-dark); transform:translateY(-2px); }
 
-    .abstract-container, .followup-container { display:flex; gap:18px; align-items:stretch; justify-content:center; flex-wrap:wrap; margin-top:8px; }
-    .abstract-text, .abstract-teaser-wrapper, .followup-text, .followup-video-wrapper { flex:1 1 45%; min-width:280px; display:flex; flex-direction:column; }
+    .abstract-container { display:flex; gap:18px; align-items:stretch; justify-content:center; flex-wrap:wrap; margin-top:8px; }
+    .abstract-text, .abstract-teaser-wrapper { flex:1 1 45%; min-width:280px; display:flex; flex-direction:column; }
     .abstract-teaser-wrapper img { object-fit:contain; width:100%; max-width:420px; cursor:pointer; border-radius:14px; margin:auto; display:block; }
-    .followup-video-wrapper iframe { width:100%; height:280px; border-radius:14px; }
-    @media (max-width:900px) { .abstract-text, .abstract-teaser-wrapper, .followup-text, .followup-video-wrapper { flex:1 1 100%; } }
+    @media (max-width:900px) { .abstract-text, .abstract-teaser-wrapper { flex:1 1 100%; } }
 
-    .insights-container { display:flex; justify-content:center; margin-top:8px; }
-    .insights-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:18px; width:100%; }
+    .insights-container { display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start; justify-content:center; margin-top:8px; }
+    .insights-grid { flex:1 1 80%; display:grid; grid-template-columns:1fr; gap:18px; }
     .card-insight { background:linear-gradient(145deg,#fff,#f0f0f5); border-radius:16px; padding:18px; box-shadow:0 10px 20px rgba(162,89,255,0.12); cursor:default; transition:transform 0.18s, box-shadow 0.18s; }
     .card-insight:hover { transform:translateY(-6px); box-shadow:0 18px 36px rgba(162,89,255,0.16); }
     .card-insight h3 { color:var(--accent); margin-bottom:8px; }
 
+    .poster { width:100%; max-width:1000px; border-radius:14px; box-shadow:0 8px 28px rgba(162,89,255,0.12); margin:18px 0; display:block; margin-left:auto; margin-right:auto; }
+    iframe { border-radius:14px; max-width:100%; width:100%; height:450px; box-shadow:0 8px 28px rgba(162,89,255,0.12); margin-top:20px; display:block; margin-left:auto; margin-right:auto; }
     pre { background:#eaeaea; padding:16px; border-radius:12px; overflow-x:auto; color:#222; }
-    .copy-btn { margin-top:10px; background:var(--accent); color:#fff; padding:6px 12px; border:none; border-radius:8px; cursor:pointer; font-weight:600; transition:0.2s; }
-    .copy-btn:hover { background:var(--accent-dark); }
 
     footer { text-align:center; padding:44px 20px; font-size:0.95rem; color:#555; }
 
-    .hero-video-wrapper { margin-top:28px; display:flex; justify-content:center; }
-    .hero-video-inner { position:relative; width:100%; max-width:520px; border-radius:14px; overflow:hidden; box-shadow:0 10px 30px rgba(162,89,255,0.12); }
-    video#hero-video { display:block; width:100%; height:auto; background:#000; outline:none; }
+    /* Modal (image fullscreen) */
+    .modal { display:none; position:fixed; z-index:10000; left:0; top:0; width:100%; height:100%; overflow:auto; background-color: rgba(0,0,0,0.9); }
+    .modal-inner { position:relative; width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+    .modal-content { max-width:92%; max-height:92%; border-radius:12px; box-shadow:0 18px 40px rgba(0,0,0,0.6); transform-origin:center center; transition:transform 0.12s; }
+    .close { position:absolute; top:18px; right:24px; color:#fff; font-size:36px; font-weight:bold; transition:0.18s; cursor:pointer; }
+    .close:hover { color:#bbb; }
+
+    /* Hero video styles */
+	.hero-video-wrapper {
+	  margin-top:16px;       /* smaller top margin */
+	  display:flex;
+	  justify-content:center;
+	}
+
+	.hero-video-inner {
+	  position:relative;
+	  width:100%;
+	  max-width:640px;       /* more compact */
+	  border-radius:12px;
+	  overflow:hidden;
+	  box-shadow:0 8px 24px rgba(162,89,255,0.12);
+	}
+
+	video#hero-video {
+	  display:block;
+	  width:100%;
+	  height:auto;
+	  cursor:pointer;
+	  background:#000;
+	  outline:none;
+	}
+
+	.video-overlay {
+	  position:absolute;
+	  inset:0;
+	  display:flex;
+	  align-items:center;
+	  justify-content:center;
+	  pointer-events:none;
+	}
+
+	.play-button {
+	  pointer-events:auto;
+	  display:flex;
+	  align-items:center;
+	  justify-content:center;
+	  width:60px;           /* slightly smaller */
+	  height:60px;
+	  border-radius:50%;
+	  background:rgba(0,0,0,0.5);
+	  color:white;
+	  font-size:24px;
+	  border:2px solid rgba(255,255,255,0.14);
+	  transition:transform 0.12s, background 0.12s;
+	}
+	.play-button:hover {
+	  transform:scale(1.06);
+	  background:rgba(0,0,0,0.6);
+	}
+
+	@media (max-width:600px) {
+	  .hero-video-inner { max-width:90%; }
+	  .play-button { width:50px; height:50px; font-size:20px; }
+	}
   </style>
 </head>
 <body>
 
-  <div class="topnav">
-    <a href="#hero">Home</a>
-    <a href="#abstract">Abstract</a>
-    <a href="#insights">Key Insights</a>
-    <a href="#colab">Colab Demo</a>
-    <a href="#followup">Follow-up</a>
-    <a href="#caltech">Caltech Talk</a>
-    <a href="#bibtex">BibTeX</a>
+  <!-- Top Navigation -->
+  <div class="topnav" role="navigation" aria-label="Main navigation">
+    <a href="#hero" aria-label="Go to home">Home</a>
+    <a href="#abstract" aria-label="Go to abstract">Abstract</a>
+    <a href="#insights" aria-label="Go to key insights">Key Insights</a>
+    <a href="#colab" aria-label="Open Colab demo">Colab Demo</a>
+    <a href="#followup" aria-label="Open follow-up paper">Follow-up</a>
+    <a href="#caltech" aria-label="Open Caltech talk">Caltech Talk</a>
+    <a href="#bibtex" aria-label="Open BibTeX">BibTeX</a>
   </div>
 
-  <section id="hero">
+  <!-- Hero Section -->
+  <section id="hero" aria-label="Hero section">
     <div class="section-content">
       <h1>The Double-Ellipsoid Geometry of CLIP</h1>
       <h2>ICML 2025</h2>
-      <div class="authors-container">
-        <div class="author"><a href="https://yossilevii100.github.io"><img src="misc/yossi.jfif" alt="Meir Yossef Levi portrait"></a><a href="https://yossilevii100.github.io">Meir Yossef Levi</a></div>
-        <div class="author"><a href="https://guygilboa.net.technion.ac.il/"><img src="misc/guy.png" alt="Guy Gilboa portrait"></a><a href="https://guygilboa.net.technion.ac.il/">Guy Gilboa</a></div>
-        <div class="vertical-line"></div>
-        <div class="author"><a href="https://www.technion.ac.il/en/"><img src="misc/technion.png" alt="Technion logo" style="background:black;"></a><a href="https://www.technion.ac.il/en/">Technion</a></div>
+
+      <!-- Author portraits -->
+      <div class="authors-container" aria-hidden="false">
+        <div class="author">
+          <a href="https://yossilevii100.github.io" aria-label="Meir Yossef Levi personal page">
+            <img src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/yossi.jfif" alt="Meir Yossef Levi portrait">
+          </a>
+          <a href="https://yossilevii100.github.io">Meir Yossef Levi</a>
+        </div>
+        <div class="author">
+          <a href="https://guygilboa.net.technion.ac.il/" aria-label="Guy Gilboa personal page">
+            <img src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/guy.png" alt="Guy Gilboa portrait">
+          </a>
+          <a href="https://guygilboa.net.technion.ac.il/">Guy Gilboa</a>
+        </div>
+        <div class="vertical-line" aria-hidden="true"></div>
+        <div class="author">
+          <a href="https://www.technion.ac.il/en/" aria-label="Technion website">
+            <img src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/technion.png" alt="Technion logo" style="background:black;">
+          </a>
+          <a href="https://www.technion.ac.il/en/">Technion</a>
+        </div>
       </div>
-      <div class="hero-video-wrapper"><div class="hero-video-inner"><video id="hero-video" src="misc/double_ellipsoid.mp4" muted playsinline preload="metadata"></video></div></div>
-      <div class="btn-row">
-        <a class="btn-custom" href="https://arxiv.org/abs/2411.14517" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/ArXiv_logo_2022.svg/512px-ArXiv_logo_2022.svg.png"> ArXiv</a>
-        <a class="btn-custom" href="https://github.com/yossilevii100/double-ellipsoid-clip" target="_blank"><i class="fab fa-github"></i> Code</a>
-        <a class="btn-custom" href="https://www.youtube.com/watch?v=4nJCuGGfirw" target="_blank"><i class="fas fa-video"></i> Presentation</a>
+
+      <!-- Aligned buttons row -->
+      <div class="btn-row" role="toolbar" aria-label="Primary links">
+        <a class="btn-custom" href="https://arxiv.org/abs/2411.14517" target="_blank" rel="noopener" aria-label="Open arXiv paper">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/ArXiv_logo_2022.svg/512px-ArXiv_logo_2022.svg.png" alt="ArXiv logo"> ArXiv
+        </a>
+        <a class="btn-custom" href="https://github.com/yossilevii100/double-ellipsoid-clip" target="_blank" rel="noopener" aria-label="Open code on GitHub">
+          <i class="fab fa-github" aria-hidden="true"></i> Code
+        </a>
+        <a class="btn-custom" href="https://www.youtube.com/watch?v=4nJCuGGfirw" target="_blank" rel="noopener" aria-label="Watch presentation on YouTube">
+          <i class="fas fa-video" aria-hidden="true"></i> Presentation
+        </a>
       </div>
-    </div>
+
+      <!-- Hero Video -->
+		<div class="hero-video-wrapper" aria-hidden="false">
+		  <div class="hero-video-inner" id="hero-video-inner">
+			<video id="hero-video"
+				   src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/double_ellipsoid.mp4"
+				   muted playsinline preload="metadata" aria-label="Short demonstration video"></video>
+
+			<div class="video-overlay" aria-hidden="true">
+			  <button class="play-button" id="hero-play-btn" title="Play video" aria-hidden="false" aria-label="Play video">
+				<i class="fas fa-play"></i>
+			  </button>
+			</div>
+		  </div>
+		</div>
   </section>
 
-  <section id="abstract">
+  <!-- Abstract + Teaser Section -->
+  <section id="abstract" aria-label="Abstract section">
     <div class="section-content">
-      <h2>Abstract</h2>
+      <h2 style="text-align:center; margin-bottom:18px;">Abstract</h2>
       <div class="abstract-container">
-        <div class="abstract-text"><p>Contrastive Language–Image Pre-Training (CLIP) is instrumental across many domains, yet its embedding geometry is not fully understood. We examine the <strong>raw (pre-normalized)</strong> features and show that image and text reside on <strong>linearly separable ellipsoid shells</strong>, both <strong>shifted away from the origin</strong>. We explain the benefits of this structure and introduce a notion of <em>conformity</em>, which closely matches cosine similarity to the modality mean. We further connect this geometry to the <em>modality gap</em> and the <em>narrow-cone</em> effect.</p></div>
-        <div class="abstract-teaser-wrapper"><img src="misc/clip_poster.png" alt="Teaser poster"></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="insights">
-    <div class="section-content">
-      <h2>Key Insights</h2>
-      <div class="insights-container">
-        <div class="insights-grid">
-          <div class="card-insight"><h3>Double-Ellipsoid Geometry</h3><p>Image and text features occupy distinct, shifted ellipsoid shells in the raw CLIP space; their separability explains the <em>modality gap</em> while their offset from the origin explains the <em>Narrow Cone Effect</em>.</p></div>
-          <div class="card-insight"><h3>Conformity ≈ Mean-Similarity</h3><p>A sample's conformity—the average cosine similarity to all others—can be estimated by its cosine similarity to the modality mean.</p></div>
-          <div class="card-insight"><h3>Optimal Convergence</h3><p>We found that in this position the alignment between the conformity distribution of text and images is optimal.</p></div>
-          <div class="card-insight"><h3>Practical Implications</h3><p>Understanding this geometry motivates simple diagnostics and improved alignment methods in downstream tasks.</p></div>
+        <div class="abstract-text">
+          <p>
+            Contrastive Language–Image Pre-Training (CLIP) is instrumental across many domains, yet its embedding geometry is not fully understood. We examine the <strong>raw (pre-normalized)</strong> features and show that image and text reside on <strong>linearly separable ellipsoid shells</strong>, both <strong>shifted away from the origin</strong>. We explain the benefits of this structure and introduce a notion of <em>conformity</em>, which closely matches cosine similarity to the modality mean. We further connect this geometry to the <em>modality gap</em> and the <em>narrow-cone</em> effect.
+          </p>
+        </div>
+        <div class="abstract-teaser-wrapper">
+          <img id="abstract-teaser" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/clip_poster.png" alt="Teaser poster for the Double-Ellipsoid Geometry of CLIP">
         </div>
       </div>
     </div>
   </section>
 
-  <section id="colab">
+  <!-- Modal for image fullscreen -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-inner" id="modal-inner">
+      <button class="close" id="modal-close" aria-label="Close image">&times;</button>
+      <img class="modal-content" id="modal-img" src="" alt="Expanded poster view">
+    </div>
+  </div>
+
+  <!-- Key Insights Section -->
+  <section id="insights" aria-label="Key insights">
+    <div class="section-content">
+      <h2>Key Insights</h2>
+      <div class="insights-container">
+        <div class="insights-grid" role="list">
+          <div class="card-insight" role="listitem">
+            <h3>Double-Ellipsoid Geometry</h3>
+            <p>Image and text features occupy distinct, shifted ellipsoid shells in the raw CLIP space; their separability explains the <em>modality gap</em> while their offset from the origin explains the <em>Narrow Cone Effect</em>.</p>
+          </div>
+          <div class="card-insight" role="listitem">
+            <h3>Conformity ≈ Mean-Similarity</h3>
+            <p>A sample's conformity—the average cosine similarity to all others—can be estimated by its cosine similarity to the modality mean.</p>
+          </div>
+          <div class="card-insight" role="listitem">
+            <h3>Optimal Convergence</h3>
+            <p>We found that in this position the alignment between the conformity distribution of text and images is optimal.</p>
+          </div>
+          <div class="card-insight" role="listitem">
+            <h3>Practical Implications</h3>
+            <p>Understanding this geometry motivates simple diagnostics and improved alignment methods in downstream tasks.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Colab Demo Section -->
+  <section id="colab" aria-label="Colab demonstration">
     <div class="section-content">
       <h2>Try it in Colab</h2>
       <p>Run our quick demo on your browser with no setup required.</p>
-      <a class="btn-custom" href="https://colab.research.google.com/gist/yossilevii100/aa3ca61e69ff5e1c0cd9cd6ddebd612e/untitled3.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg"> Open Colab Notebook</a>
+      <a class="btn-custom" href="https://colab.research.google.com/gist/yossilevii100/aa3ca61e69ff5e1c0cd9cd6ddebd612e/untitled3.ipynb" target="_blank" rel="noopener" aria-label="Open Colab Notebook">
+        <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Colab badge"> Open Colab Notebook
+      </a>
       <pre>git clone https://github.com/yossilevii100/double-ellipsoid-clip.git
 cd double-ellipsoid-clip
 pip install -r requirements.txt
@@ -171,25 +302,46 @@ pip install -r requirements.txt
     </div>
   </section>
 
-  <section id="followup">
+  <!-- Follow-up Paper Section -->
+  <section id="followup" aria-label="Follow-up work">
     <div class="section-content">
       <h2>Follow-up Work</h2>
-      <div class="followup-container">
-        <div class="followup-text"><p>Our follow-up ICML 2025 paper analyzes CLIP in a probabilistic manner, providing a whitening scheme that enables likelihood estimation in CLIP's latent space. This framework bridges CLIP embeddings with classical probabilistic modeling, offering new insights into their statistical structure.</p><a class="btn-custom" href="https://arxiv.org/abs/2505.06934" target="_blank">Read on arXiv</a></div>
-        <div class="followup-video-wrapper"><iframe src="https://www.youtube.com/embed/3JpucozKQ5I" frameborder="0" allowfullscreen></iframe></div>
+      <img class="poster" src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/whitened_poster.png" alt="Follow-up poster">
+      <p>Check out our follow-up ICML 2025 paper on analyzing CLIP in a probabilistic manner:</p>
+      <div class="btn-row" style="margin-top:8px;">
+        <a class="btn-custom" href="https://arxiv.org/abs/2505.06934" target="_blank" rel="noopener" aria-label="Open follow-up arXiv paper">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/ArXiv_logo_2022.svg/512px-ArXiv_logo_2022.svg.png" alt="ArXiv logo"> arXiv
+        </a>
+        <a class="btn-custom" href="https://icml.cc/virtual/2025/poster/45897" target="_blank" rel="noopener" aria-label="Open ICML poster">
+          <i class="fas fa-chalkboard-teacher" aria-hidden="true"></i> ICML Poster
+        </a>
+        <a class="btn-custom" href="https://github.com/rbetser/W_CLIP" target="_blank" rel="noopener" aria-label="Open W_CLIP GitHub">
+          <i class="fab fa-github" aria-hidden="true"></i> GitHub
+        </a>
+      </div>
+
+      <div class="btn-row" style="margin-top:10px;">
+        <a class="btn-custom" href="https://colab.research.google.com/github/rbetser/W_CLIP/blob/main/calc_log_like_image_demo.ipynb" target="_blank" rel="noopener" aria-label="Open image likelihood demo">
+          <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Colab badge"> Colab Demo (Image Likelihood)
+        </a>
+        <a class="btn-custom" href="https://colab.research.google.com/github/rbetser/W_CLIP/blob/main/calc_log_like_text_demo.ipynb" target="_blank" rel="noopener" aria-label="Open text likelihood demo">
+          <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Colab badge"> Colab Demo (Text Likelihood)
+        </a>
       </div>
     </div>
   </section>
 
-  <section id="caltech">
+  <!-- Caltech Talk Section -->
+  <section id="caltech" aria-label="Caltech talk">
     <div class="section-content">
       <h2>Talk in Vision Lab, Caltech (Perona's Lab)</h2>
       <p>Watch the full one-hour talk:</p>
-      <iframe src="https://drive.google.com/file/d/13G6lymCSy6RgKj4VmaGgePG2L3qkqWIB/preview" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://drive.google.com/file/d/13G6lymCSy6RgKj4VmaGgePG2L3qkqWIB/preview" title="Caltech Talk" frameborder="0" allowfullscreen></iframe>
     </div>
   </section>
 
-  <section id="bibtex">
+  <!-- BibTeX Section -->
+  <section id="bibtex" aria-label="BibTeX">
     <div class="section-content">
       <h2>BibTeX</h2>
       <pre id="bibtex-text">@inproceedings{levi2025double,
@@ -198,17 +350,154 @@ pip install -r requirements.txt
   booktitle={International Conference on Machine Learning},
   year={2025}
 }</pre>
-      <button class="copy-btn" onclick="copyBibtex()">Copy BibTeX</button>
     </div>
   </section>
 
-  <footer>&copy; 2025 <a href="https://yossilevii100.github.io">Meir Yossef Levi</a> &amp; <a href="https://guygilboa.net.technion.ac.il/">Guy Gilboa</a></footer>
+  <footer>
+    &copy; 2025 Meir Yossef Levi &amp; Guy Gilboa
+  </footer>
 
+  <!-- Scripts -->
   <script>
-    function copyBibtex() {
-      const bibtex = document.getElementById("bibtex-text").innerText;
-      navigator.clipboard.writeText(bibtex).then(() => alert("BibTeX copied to clipboard!"));
-    }
+    // --- Modal image fullscreen (with ESC close + wheel zoom) ---
+    (function(){
+      const modal = document.getElementById('modal');
+      const modalImg = document.getElementById('modal-img');
+      const teaser = document.getElementById('abstract-teaser');
+      const closeBtn = document.getElementById('modal-close');
+      let scale = 1;
+
+      function openModal(src, alt) {
+        modalImg.src = src;
+        modalImg.alt = alt || '';
+        scale = 1;
+        modalImg.style.transform = 'scale(1)';
+        modal.style.display = 'block';
+        modal.setAttribute('aria-hidden', 'false');
+        // focus for accessibility
+        closeBtn.focus();
+      }
+      function closeModal() {
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+        modalImg.src = '';
+      }
+
+      teaser.addEventListener('click', () => openModal(teaser.src, teaser.alt));
+      closeBtn.addEventListener('click', closeModal);
+
+      // Close on ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'block') closeModal();
+      });
+
+      // Close when clicking on backdrop (but not when clicking the image itself)
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      // Wheel zoom on modal image (desktop)
+      modalImg.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const delta = -e.deltaY;
+        if (delta > 0) scale = Math.min(3, scale + 0.1);
+        else scale = Math.max(0.6, scale - 0.1);
+        modalImg.style.transform = 'scale(' + scale + ')';
+      }, { passive: false });
+    })();
+
+    // --- Hero video autoplay once per visible entry (IntersectionObserver),
+    // and allow click to play/replay. Plays when >= 70% visible. ---
+    (function(){
+      const video = document.getElementById('hero-video');
+      const playBtn = document.getElementById('hero-play-btn');
+      const inner = document.getElementById('hero-video-inner');
+
+      // keep track whether we've already played for the current visibility (so it won't repeatedly retrigger while visible)
+      let playedThisView = false;
+
+      // Try to play, but handle promise rejection (autoplay blocked)
+      function tryPlay() {
+        if (!video) return;
+        // reset to start before playing
+        try { video.currentTime = 0; } catch(e) {}
+        const p = video.play();
+        if (p && typeof p.then === 'function') {
+          p.catch(() => {
+            // autoplay blocked — show play button (already visible) and do nothing else
+            playBtn.style.display = 'flex';
+          });
+        }
+      }
+
+      // Click/tap: always attempt to play (user-initiated)
+      function onUserPlay() {
+        tryPlay();
+        playedThisView = true; // mark so observer won't retrigger immediately
+        playBtn.style.display = 'none';
+      }
+
+      // Show overlay play button initially — hide only after successful play
+      playBtn.style.display = 'flex';
+      playBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        onUserPlay();
+      });
+
+      // Clicking the video also plays/replays
+      video.addEventListener('click', () => {
+        onUserPlay();
+      });
+
+      // Update overlay visibility based on playing state
+      video.addEventListener('playing', () => { playBtn.style.display = 'none'; });
+      video.addEventListener('pause', () => { /* keep overlay hidden on pause after autoplay; user can click to replay */ });
+
+      // Intersection observer to play once when 70% visible.
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.target !== video) return;
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.7) {
+            if (!playedThisView) {
+              // attempt autoplay
+              tryPlay();
+              playedThisView = true;
+            }
+          } else {
+            // when video leaves view, reset so it can autoplay again next time it enters view
+            playedThisView = false;
+          }
+        });
+      }, { threshold: [0, 0.4, 0.7, 0.9] });
+
+      // Observe the video element
+      observer.observe(video);
+
+      // If the browser initially blocked autoplay, keep play button visible for user to tap.
+      // If the video can autoplay immediately, the 'playing' event handler will hide the button.
+
+      // Accessibility: keyboard activation on play button (Enter/Space)
+      playBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onUserPlay();
+        }
+      });
+    })();
+
+    // --- Optional: smooth scroll for nav links ---
+    (function(){
+      const navLinks = document.querySelectorAll('.topnav a[href^="#"]');
+      navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const id = link.getAttribute('href').slice(1);
+          const el = document.getElementById(id);
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    })();
   </script>
+
 </body>
 </html>
