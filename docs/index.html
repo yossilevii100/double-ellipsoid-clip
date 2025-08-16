@@ -137,23 +137,26 @@
 }
 
 .card-insight .bottom .left {
-  flex: 0 0 45%;             /* fixed ~half width, won't shrink below */
+  flex: 0 0 45%;             /* fixed half width */
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  position: relative;
 }
 
 .card-insight .bottom .left img {
-  width: 60%;                /* start smaller */
-  max-width: 420px;
+  height: 100%;              /* fill full height of left cell */
+  width: auto;               /* maintain aspect ratio */
   object-fit: contain;
   border-radius: 14px;
   transition: transform 0.35s ease;
+  transform: scale(0.6);     /* start at 60% */
 }
 
-.card-insight .bottom .left img:hover {
-  transform: scale(1.66);    /* scale to fill 100% */
+/* scale image when hovering anywhere on the card */
+.card-insight:hover .bottom .left img {
+  transform: scale(1);       /* grow to 100% */
 }
 
 .card-insight .bottom .right {
