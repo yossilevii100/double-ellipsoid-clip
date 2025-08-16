@@ -102,13 +102,12 @@
 	/* Key Insight Card Styles */
 .card-insight {
   display: flex;
-  flex-direction: column; /* main card is now vertical */
+  flex-direction: column;
   border-radius: 18px;
   background: linear-gradient(145deg, #fff, #f0f0f5);
   box-shadow: 0 8px 22px rgba(162, 89, 255, 0.12);
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  min-height: 260px;
   overflow: hidden;
   padding: 20px;
 }
@@ -118,9 +117,9 @@
   box-shadow: 0 22px 40px rgba(162, 89, 255, 0.2);
 }
 
-/* Upper part - header */
+/* Header on top */
 .card-insight .upper {
-  flex: 0 0 auto; /* only takes content height */
+  flex: 0 0 auto;
 }
 
 .card-insight .upper h3 {
@@ -128,49 +127,62 @@
   margin: 0 0 12px 0;
 }
 
-/* Bottom part - split left image / right description */
+/* Bottom container - left image, right text */
 .card-insight .bottom {
-  flex: 1; /* fill remaining space */
   display: flex;
-  flex-direction: row; /* split horizontally */
-  gap: 20px;
+  gap: 18px;
+  align-items: stretch;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
 }
 
-/* Left image container */
+/* Image wrapper */
 .card-insight .bottom .left {
-  flex: 1;
+  flex: 1 1 45%;
+  min-width: 280px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  position: relative;
 }
 
 .card-insight .bottom .left img {
-  height: 50%;
-  width: auto;
   object-fit: contain;
+  width: 60%;       /* start smaller */
+  max-width: 420px;
   border-radius: 14px;
+  margin: auto;
+  display: block;
   transition: transform 0.35s ease;
-  transform: scale(1);
 }
 
-.card-insight:hover .bottom .left img {
-  transform: scale(2);
+.card-insight .bottom .left img:hover {
+  transform: scale(1.66); /* 60% → 100% (100/60 ≈ 1.66) */
 }
 
-/* Right description */
+/* Right text */
 .card-insight .bottom .right {
-  flex: 1;
+  flex: 1 1 45%;
+  min-width: 280px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* align top */
+  justify-content: flex-start;
 }
 
 .card-insight .bottom .right p {
   font-size: 1rem;
   line-height: 1.5;
   margin: 0;
+}
+
+/* Responsive */
+@media (max-width:900px) {
+  .card-insight .bottom .left,
+  .card-insight .bottom .right {
+    flex: 1 1 100%;
+  }
 }
  cursor:default; transition:transform 0.18s, box-shadow 0.18s; }
     .card-insight:hover { transform:translateY(-6px); box-shadow:0 18px 36px rgba(162,89,255,0.16); }
@@ -350,13 +362,21 @@
       <h2>Key Insights</h2>
       <div class="insights-container">
         <div class="insights-grid" role="list">
-          <div class="card-insight" role="listitem">
-            <h3>Double-Ellipsoid Geometry</h3>
-			<img src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/key_insight_double.png"
-				 alt="Double Ellipsoid Insight"
-				 style="width:60px; height:60px; border-radius:12px; margin-top:8px; box-shadow:0 4px 10px rgba(0,0,0,0.08); align-self:center;">
-            <p>Image and text features occupy distinct, shifted ellipsoid shells in the raw CLIP space; their separability explains the <em>modality gap</em> while their offset from the origin explains the <em>Narrow Cone Effect</em>.</p>
-          </div>
+		  
+		  <div class="card-insight">
+		  <div class="upper">
+			<h3>Double-Ellipsoid Geometry</h3>
+		  </div>
+		  <div class="bottom">
+			<div class="left">
+			  <img src="https://raw.githubusercontent.com/yossilevii100/double-ellipsoid-clip/main/misc/key_insight_double.png" alt="Double Ellipsoid Insight">
+			</div>
+			<div class="right">
+			  <p>Image and text features occupy distinct, shifted ellipsoid shells in the raw CLIP space; their separability explains the <em>modality gap</em> while their offset from the origin explains the <em>Narrow Cone Effect</em>.</p>
+			</div>
+		  </div>
+		</div>
+		  
           <div class="card-insight" role="listitem">
             <h3>Conformity ≈ Mean-Similarity</h3>
             <p>A sample's conformity—the average cosine similarity to all others—can be estimated by its cosine similarity to the modality mean.</p>
