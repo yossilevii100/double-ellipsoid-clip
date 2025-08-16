@@ -403,24 +403,46 @@ pip install -r requirements.txt
     </div>
   </section>
 
-  <!-- BibTeX Section -->
-  <section id="bibtex" aria-label="BibTeX">
-    <div class="section-content">
-      <h2>BibTeX</h2>
+<!-- BibTeX Section -->
+<section id="bibtex" aria-label="BibTeX">
+  <div class="section-content">
+    <h2>BibTeX</h2>
+    <div style="display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap;">
       <pre id="bibtex-text">@inproceedings{levi2025double,
   title={The Double-Ellipsoid Geometry of CLIP},
   author={Levi, Meir Yossef and Gilboa, Guy},
   booktitle={International Conference on Machine Learning},
   year={2025}
 }</pre>
+      <button class="btn-custom" id="copy-bibtex-btn">
+        Copy BibTeX
+      </button>
     </div>
-  </section>
+  </div>
+</section>
 
   <footer>
     &copy; 2025 Meir Yossef Levi &amp; Guy Gilboa
   </footer>
 
   <!-- Scripts -->
+  <script>
+  const copyBtn = document.getElementById('copy-bibtex-btn');
+  const bibtexText = document.getElementById('bibtex-text');
+
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(bibtexText.innerText)
+      .then(() => {
+        copyBtn.innerText = 'Copied!';
+        setTimeout(() => { copyBtn.innerText = 'Copy BibTeX'; }, 1500);
+      })
+      .catch(() => {
+        copyBtn.innerText = 'Failed';
+        setTimeout(() => { copyBtn.innerText = 'Copy BibTeX'; }, 1500);
+      });
+  });
+</script>
+
   <script>
     // --- Modal image fullscreen (with ESC close + wheel zoom) ---
     (function(){
