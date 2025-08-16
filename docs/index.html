@@ -505,84 +505,43 @@ pip install -r requirements.txt
       }, { passive: false });
     })();
 
-    // --- Hero video autoplay once per visible entry (IntersectionObserver),
-    // and allow click to play/replay. Plays when >= 70% visible. ---
-    (function(){
-      const video = document.getElementById('hero-video');
-      const playBtn = document.getElementById('hero-play-btn');
-      const inner = document.getElementById('hero-video-inner');
+    // --- Hero video autoplay once per visible entry (IntersectionObserver) --- 
+	(function() {
+	  const video = document.getElementById('hero-video');
+	  if (!video) return;
 
-      // keep track whether we've already played for the current visibility (so it won't repeatedly retrigger while visible)
-      let playedThisView = false;
+	  let playedThisView = false;
 
-      // Try to play, but handle promise rejection (autoplay blocked)
-      function tryPlay() {
-        if (!video) return;
-        // reset to start before playing
-        try { video.currentTime = 0; } catch(e) {}
-        const p = video.play();
-        if (p && typeof p.then === 'function') {
-          p.catch(() => {
-            // autoplay blocked — show play button (already visible) and do nothing else
-            playBtn.style.display = 'flex';
-          });
-        }
-      }
+	  // Try to play, handling autoplay restrictions
+	  function tryPlay() {
+		try { video.currentTime = 0; } catch(e) {}
+		const p = video.play();
+		if (p && typeof p.then === 'function') {
+		  p.catch(() => {
+			console.log("Autoplay blocked by browser");
+		  });
+		}
+	  }
 
-      // Click/tap: always attempt to play (user-initiated)
-      function onUserPlay() {
-        tryPlay();
-        playedThisView = true; // mark so observer won't retrigger immediately
-        playBtn.style.display = 'none';
-      }
+	  // Intersection observer to play once when 70% visible
+	  const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+		  if (entry.target !== video) return;
 
-      // Show overlay play button initially — hide only after successful play
-      playBtn.style.display = 'flex';
-      playBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        onUserPlay();
-      });
+		  if (entry.isIntersecting && entry.intersectionRatio >= 0.7) {
+			if (!playedThisView) {
+			  tryPlay();
+			  playedThisView = true; // only play once while visible
+			}
+		  } else {
+			// reset when video leaves view
+			playedThisView = false;
+		  }
+		});
+	  }, { threshold: [0, 0.4, 0.7, 0.9] });
 
-      // Clicking the video also plays/replays
-      video.addEventListener('click', () => {
-        onUserPlay();
-      });
-
-      // Update overlay visibility based on playing state
-      video.addEventListener('playing', () => { playBtn.style.display = 'none'; });
-      video.addEventListener('pause', () => { /* keep overlay hidden on pause after autoplay; user can click to replay */ });
-
-      // Intersection observer to play once when 70% visible.
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.target !== video) return;
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.7) {
-            if (!playedThisView) {
-              // attempt autoplay
-              tryPlay();
-              playedThisView = true;
-            }
-          } else {
-            // when video leaves view, reset so it can autoplay again next time it enters view
-            playedThisView = false;
-          }
-        });
-      }, { threshold: [0, 0.4, 0.7, 0.9] });
-
-      // Observe the video element
-      observer.observe(video);
-
-      // If the browser initially blocked autoplay, keep play button visible for user to tap.
-      // If the video can autoplay immediately, the 'playing' event handler will hide the button.
-
-      // Accessibility: keyboard activation on play button (Enter/Space)
-      playBtn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          onUserPlay();
-        }
-      });
-    })();
+	  observer.observe(video);
+	})();
 
     // --- Optional: smooth scroll for nav links ---
     (function(){
