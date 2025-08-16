@@ -112,7 +112,7 @@
 	  transition: transform 0.3s ease, box-shadow 0.3s ease;
 	  min-height: 180px;
 	  gap: 20px;
-	  overflow: hidden;          /* keep image inside left */
+	  overflow: hidden;
 	}
 
 	.card-insight:hover {
@@ -147,22 +147,22 @@
 	  width: 100%;
 	  overflow: hidden;
 	  flex-shrink: 0;
+	  position: relative;
 	}
 
 	/* Image itself */
 	.card-insight .left img {
-	  width: 100px;                  /* small initial size */
+	  width: 100px;                  /* initial small size */
 	  height: auto;
 	  object-fit: contain;
 	  border-radius: 14px;
 	  transition: transform 0.35s ease, box-shadow 0.35s ease;
-	  transform-origin: bottom center;  /* grow upward */
 	  display: block;
 	}
 
-	/* Hover: image grows up to full height of left cell */
+	/* Hover: image scales uniformly, centered */
 	.card-insight:hover .left img {
-	  transform: scale(2);           /* adjust scale as needed */
+	  transform: scale(2);           /* grows uniformly */
 	  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
 	}
 
