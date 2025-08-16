@@ -118,6 +118,7 @@
   box-shadow: 0 22px 40px rgba(162, 89, 255, 0.2);
 }
 
+/* Left side */
 .card-insight .left {
   display: flex;
   flex-direction: column;
@@ -125,8 +126,9 @@
   margin-right: 20px;
 }
 
+/* Header (upper) */
 .card-insight .left .upper {
-  flex: 0 0 auto;
+  flex: 0 0 auto; /* header only takes its content height */
 }
 
 .card-insight .left .upper h3 {
@@ -134,7 +136,7 @@
   margin: 0 0 12px 0;
 }
 
-/* Lower part: image container */
+/* Image container (lower) */
 .card-insight .left .lower {
   flex: 1; /* fill remaining left space */
   display: flex;
@@ -144,34 +146,35 @@
   position: relative;
 }
 
-/* Image initial state */
+/* Image itself */
 .card-insight .left .lower img {
+  height: 50%;   /* start smaller but centered */
   width: auto;
-  height: 60%; /* start smaller */
   object-fit: contain;
   border-radius: 14px;
   transition: transform 0.35s ease;
-  transform: scale(1); /* initial scale */
+  transform: scale(1);
 }
 
 /* Image grows on card hover */
 .card-insight:hover .left .lower img {
-  transform: scale(1.6); /* enlarge to fill bottom cell */
+  transform: scale(2); /* enlarge to fill left lower part */
 }
 
-/* Right side: description text */
+/* Right side text */
 .card-insight .right {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* align top with header */
 }
 
 .card-insight .right p {
   font-size: 1rem;
   line-height: 1.5;
   margin: 0;
-} cursor:default; transition:transform 0.18s, box-shadow 0.18s; }
+}
+ cursor:default; transition:transform 0.18s, box-shadow 0.18s; }
     .card-insight:hover { transform:translateY(-6px); box-shadow:0 18px 36px rgba(162,89,255,0.16); }
     .card-insight h3 { color:var(--accent); margin-bottom:8px; }
 
