@@ -102,81 +102,76 @@
 	/* Key Insight Card Styles */
 	.card-insight {
 	  display: flex;
-	  flex-direction: row;       /* left/right split */
-	  align-items: stretch;
-	  padding: 18px;
-	  border-radius: 18px;
+	  flex-direction: row;       /* left = header+image, right = description */
 	  background: linear-gradient(145deg,#fff,#f0f0f5);
-	  box-shadow: 0 8px 22px rgba(162,89,255,0.12);
+	  border-radius: 16px;
+	  padding: 18px;
+	  box-shadow: 0 10px 20px rgba(162,89,255,0.12);
 	  cursor: pointer;
-	  transition: transform 0.3s ease, box-shadow 0.3s ease;
-	  min-height: 180px;
-	  gap: 20px;
-	  overflow: hidden;
+	  transition: transform 0.25s ease, box-shadow 0.25s ease;
+	  min-height: 220px;
+	  overflow: visible;         /* allow image to scale beyond card */
 	}
 
-	.card-insight:hover {
-	  transform: translateY(-6px);
-	  box-shadow: 0 22px 40px rgba(162,89,255,0.2);
-	}
-
-	/* Left: vertical split */
+	/* Left side: header + image */
 	.card-insight .left {
 	  flex: 1;
 	  display: flex;
 	  flex-direction: column;
 	  justify-content: space-between; /* header top, image bottom */
 	  align-items: center;
-	  overflow: hidden;              /* contain image */
-	  position: relative;
+	  overflow: visible;
 	}
 
-	/* Header pinned to top */
+	/* Header inside left */
 	.card-insight .left h3 {
 	  margin: 0;
+	  font-size: 1.2rem;
 	  color: var(--accent);
 	  text-align: center;
-	  flex-shrink: 0;
 	}
 
-	/* Image pinned to bottom */
+	/* Image wrapper */
 	.card-insight .left .img-wrapper {
 	  display: flex;
 	  justify-content: center;
-	  align-items: flex-end;        /* push image to bottom */
+	  align-items: flex-end;  /* bottom of left part */
 	  width: 100%;
-	  overflow: hidden;
-	  flex-shrink: 0;
 	  position: relative;
+	  overflow: visible;      /* allow scaling */
 	}
 
-	/* Image itself */
+	/* Image */
 	.card-insight .left img {
-	  width: 100px;                  /* initial small size */
+	  width: 100px;
 	  height: auto;
 	  object-fit: contain;
 	  border-radius: 14px;
 	  transition: transform 0.35s ease, box-shadow 0.35s ease;
+	  transform-origin: center center; /* scale uniformly */
 	  display: block;
 	}
 
-	/* Hover: image scales uniformly, centered */
+	/* Hover: scale image */
 	.card-insight:hover .left img {
-	  transform: scale(2);           /* grows uniformly */
+	  transform: scale(2);
 	  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
 	}
 
-	/* Right: description */
+	/* Right side: description */
 	.card-insight .right {
 	  flex: 1;
+	  padding-left: 18px;
 	  display: flex;
 	  align-items: center;
-	  justify-content: flex-start;
+	  justify-content: center;
 	}
 
 	.card-insight .right p {
 	  margin: 0;
+	  font-size: 1rem;
 	  line-height: 1.5;
+	  color: #333;
 	}
  cursor:default; transition:transform 0.18s, box-shadow 0.18s; }
     .card-insight:hover { transform:translateY(-6px); box-shadow:0 18px 36px rgba(162,89,255,0.16); }
