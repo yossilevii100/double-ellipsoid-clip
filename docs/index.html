@@ -102,17 +102,17 @@
 	/* Key Insight Card Styles */
 	.card-insight {
 	  display: flex;
-	  flex-direction: row;       /* side-by-side layout */
+	  flex-direction: row;         /* left/right split */
 	  align-items: flex-start;
-	  padding: 20px;
+	  padding: 18px;
 	  border-radius: 18px;
 	  background: linear-gradient(145deg,#fff,#f0f0f5);
 	  box-shadow: 0 8px 22px rgba(162,89,255,0.12);
 	  cursor: pointer;
 	  transition: transform 0.3s ease, box-shadow 0.3s ease;
 	  min-height: 180px;
-	  overflow: visible;         /* allow image to grow above card */
-	  gap: 18px;
+	  overflow: visible;           /* allow image growth */
+	  gap: 20px;
 	}
 
 	.card-insight:hover {
@@ -120,27 +120,37 @@
 	  box-shadow: 0 22px 40px rgba(162,89,255,0.2);
 	}
 
-	.card-insight h3 {
-	  color: var(--accent);
-	  margin: 0 0 12px 0;
-	  flex-basis: 100%;          /* header full width */
-	}
-
-	.card-insight .text {
-	  flex: 1;                   /* text takes left portion */
-	}
-
-	.card-insight .img-wrapper {
-	  flex: 1;                   /* image takes right portion */
+	/* Left side: header on top, image below */
+	.card-insight .left {
 	  display: flex;
-	  justify-content: center;
-	  align-items: flex-start;
-	  overflow: visible;          /* allow hover growth */
+	  flex-direction: column;
+	  flex: 1;                     /* take half of card */
+	  align-items: center;
+	  gap: 12px;
 	  position: relative;
 	}
 
-	.card-insight img {
-	  width: 120px;               /* initial size */
+	/* Header */
+	.card-insight .left h3 {
+	  margin: 0;
+	  color: var(--accent);
+	  text-align: center;
+	  flex-shrink: 0;
+	}
+
+	/* Image container */
+	.card-insight .left .img-wrapper {
+	  flex: 1;                     /* take remaining space */
+	  display: flex;
+	  justify-content: center;
+	  align-items: flex-start;
+	  overflow: visible;           /* allow hover growth */
+	  width: 100%;
+	  position: relative;
+	}
+
+	.card-insight .left img {
+	  width: 120px;
 	  height: auto;
 	  object-fit: contain;
 	  border-radius: 14px;
@@ -148,12 +158,20 @@
 	  display: block;
 	}
 
-	.card-insight:hover img {
-	  transform: scale(2);        /* grow upward on hover */
+	.card-insight:hover .left img {
+	  transform: scale(2);          /* grow upward on hover */
 	  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
 	}
 
-	.card-insight p {
+	/* Right side: description */
+	.card-insight .right {
+	  flex: 1;                     /* take half of card */
+	  display: flex;
+	  align-items: center;
+	  justify-content: flex-start;
+	}
+
+	.card-insight .right p {
 	  margin: 0;
 	  line-height: 1.5;
 	}
