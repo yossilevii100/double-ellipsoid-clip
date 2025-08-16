@@ -102,74 +102,48 @@
 	/* Key Insight Card Styles */
 	.card-insight {
 	  display: flex;
-	  flex-direction: row; /* left = header+image, right = description */
+	  flex-direction: column; /* header + image + text stacked vertically */
+	  align-items: flex-start;
+	  padding: 20px;
+	  border-radius: 18px;
 	  background: linear-gradient(145deg,#fff,#f0f0f5);
-	  border-radius: 16px;
-	  padding: 18px;
-	  box-shadow: 0 10px 20px rgba(162,89,255,0.12);
+	  box-shadow: 0 8px 22px rgba(162,89,255,0.12);
 	  cursor: pointer;
-	  transition: transform 0.25s ease, box-shadow 0.25s ease;
-	  min-height: 220px;
-	  overflow: visible; /* allow image to scale outside the card */
+	  transition: transform 0.3s ease, box-shadow 0.3s ease;
+	  min-height: 260px;
+	  overflow: hidden;
 	}
 
-	/* Left part: header on top, image bottom */
-	.card-insight .left {
-	  flex: 1;
-	  display: flex;
-	  flex-direction: column;
-	  justify-content: space-between;
-	  overflow: visible;
+	.card-insight:hover {
+	  transform: translateY(-8px);
+	  box-shadow: 0 22px 40px rgba(162,89,255,0.2);
 	}
 
-	/* Header */
-	.card-insight .left h3 {
-	  margin: 0;
-	  font-size: 1.2rem;
+	.card-insight h3 {
 	  color: var(--accent);
-	  text-align: left;
+	  margin: 0 0 12px 0;
 	}
 
-	/* Bottom container for image */
-	.card-insight .left .img-wrapper {
-	  display: flex;
-	  justify-content: flex-start;  /* align image to left */
-	  align-items: flex-end;
+	.card-insight img {
 	  width: 100%;
-	  overflow: visible;             /* allow scaling */
-	  position: relative;
-	}
-
-	/* Image */
-	.card-insight .left img {
-	  width: 100px;
-	  height: auto;
+	  max-height: 120px; /* starting height */
 	  object-fit: contain;
 	  border-radius: 14px;
-	  transition: transform 0.35s ease, box-shadow 0.35s ease;
-	  transform-origin: center center;
+	  margin-bottom: 12px;
+	  transition: transform 0.35s ease, max-height 0.35s ease, box-shadow 0.35s ease;
 	  display: block;
 	}
 
-	/* Hover: only scale image */
-	.card-insight:hover .left img {
-	  transform: scale(2);           /* grows uniformly in all directions */
+	.card-insight:hover img {
+	  transform: scale(1.8); /* grow significantly */
+	  max-height: 220px;      /* prevents overlapping text */
 	  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
 	}
 
-	/* Right part: description */
-	.card-insight .right {
-	  flex: 1;
-	  padding-left: 18px;
-	  display: flex;
-	  align-items: center;
-	}
-
-	.card-insight .right p {
-	  margin: 0;
+	.card-insight p {
 	  font-size: 1rem;
 	  line-height: 1.5;
-	  color: #333;
+	  margin: 0;
 	}
  cursor:default; transition:transform 0.18s, box-shadow 0.18s; }
     .card-insight:hover { transform:translateY(-6px); box-shadow:0 18px 36px rgba(162,89,255,0.16); }
