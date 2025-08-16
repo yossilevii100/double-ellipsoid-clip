@@ -102,7 +102,7 @@
 	/* Key Insight Card Styles */
 	.card-insight {
 	  display: flex;
-	  flex-direction: row;       /* left = header+image, right = description */
+	  flex-direction: row; /* left = header+image, right = description */
 	  background: linear-gradient(145deg,#fff,#f0f0f5);
 	  border-radius: 16px;
 	  padding: 18px;
@@ -110,35 +110,34 @@
 	  cursor: pointer;
 	  transition: transform 0.25s ease, box-shadow 0.25s ease;
 	  min-height: 220px;
-	  overflow: visible;         /* allow image to scale beyond card */
+	  overflow: visible; /* allow image to scale outside the card */
 	}
 
-	/* Left side: header + image */
+	/* Left part: header on top, image bottom */
 	.card-insight .left {
 	  flex: 1;
 	  display: flex;
 	  flex-direction: column;
-	  justify-content: space-between; /* header top, image bottom */
-	  align-items: center;
+	  justify-content: space-between;
 	  overflow: visible;
 	}
 
-	/* Header inside left */
+	/* Header */
 	.card-insight .left h3 {
 	  margin: 0;
 	  font-size: 1.2rem;
 	  color: var(--accent);
-	  text-align: center;
+	  text-align: left;
 	}
 
-	/* Image wrapper */
+	/* Bottom container for image */
 	.card-insight .left .img-wrapper {
 	  display: flex;
-	  justify-content: center;
-	  align-items: flex-end;  /* bottom of left part */
+	  justify-content: flex-start;  /* align image to left */
+	  align-items: flex-end;
 	  width: 100%;
+	  overflow: visible;             /* allow scaling */
 	  position: relative;
-	  overflow: visible;      /* allow scaling */
 	}
 
 	/* Image */
@@ -148,23 +147,22 @@
 	  object-fit: contain;
 	  border-radius: 14px;
 	  transition: transform 0.35s ease, box-shadow 0.35s ease;
-	  transform-origin: center center; /* scale uniformly */
+	  transform-origin: center center;
 	  display: block;
 	}
 
-	/* Hover: scale image */
+	/* Hover: only scale image */
 	.card-insight:hover .left img {
-	  transform: scale(2);
+	  transform: scale(2);           /* grows uniformly in all directions */
 	  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
 	}
 
-	/* Right side: description */
+	/* Right part: description */
 	.card-insight .right {
 	  flex: 1;
 	  padding-left: 18px;
 	  display: flex;
 	  align-items: center;
-	  justify-content: center;
 	}
 
 	.card-insight .right p {
