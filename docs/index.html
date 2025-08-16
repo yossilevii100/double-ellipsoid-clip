@@ -101,48 +101,49 @@
 	}
     .card-insight {
 	  background: linear-gradient(145deg,#fff,#f0f0f5);
-	  border-radius: 16px;
-	  padding: 20px 16px;
-	  box-shadow: 0 8px 20px rgba(162,89,255,0.12);
+	  border-radius: 18px;
+	  padding: 16px 20px;
+	  box-shadow: 0 8px 22px rgba(162,89,255,0.12);
 	  cursor: pointer;
 	  transition: transform 0.3s ease, box-shadow 0.3s ease;
 	  display: flex;
-	  flex-direction: column;
 	  align-items: center;
-	  justify-content: flex-start;
-	  min-height: 260px;
+	  gap: 16px; /* space between image and text */
+	  min-height: 160px;
 	}
 
 	.card-insight:hover {
 	  transform: translateY(-8px);
-	  box-shadow: 0 20px 36px rgba(162,89,255,0.2);
+	  box-shadow: 0 22px 40px rgba(162,89,255,0.2);
 	}
 
 	.card-insight img {
-	  width: 120px;           /* larger base image */
+	  width: 120px;  /* large base size */
 	  height: 120px;
 	  object-fit: contain;
-	  border-radius: 12px;
-	  margin-bottom: 14px;
-	  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+	  border-radius: 14px;
 	  transition: transform 0.35s ease, box-shadow 0.35s ease;
 	}
 
 	.card-insight:hover img {
-	  transform: scale(1.5);  /* significant growth on hover */
-	  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+	  transform: scale(2);  /* grow twice as big on hover */
+	  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+	}
+
+	.card-insight-content {
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
 	}
 
 	.card-insight h3 {
 	  color: var(--accent);
-	  margin-bottom: 8px;
-	  text-align: center;
+	  margin: 0 0 6px 0;
 	}
 
 	.card-insight p {
 	  font-size: 1rem;
 	  line-height: 1.5;
-	  text-align: center;
 	  margin: 0;
 	}
  cursor:default; transition:transform 0.18s, box-shadow 0.18s; }
